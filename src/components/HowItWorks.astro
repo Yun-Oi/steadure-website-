@@ -1,0 +1,249 @@
+---
+import { howItWorksSteps } from '../data/siteData.js';
+---
+
+<section id="how-it-works" class="workflow-section">
+  <div class="container-zine">
+    <!-- Header -->
+    <div class="workflow-header-row">
+      <div class="header-stamp-wrap">
+        <span class="stamp-badge">04 // PRODUCTION PROTOCOL</span>
+        <span class="type-mono-sm">FROM LINK TO POST-READY PACK IN 48 HOURS</span>
+      </div>
+      <h2 class="workflow-title type-punch-lg">THE 4-TICKET EDITORIAL DISPATCH</h2>
+      <p class="workflow-subhead type-serif-body">
+        No endless Slack check-ins, no AI prompt engineering on your part. You drop a video link; we deliver a complete editorial campaign.
+      </p>
+    </div>
+
+    <!-- Ticket Stubs Ledger (Physical Ticket Styling) -->
+    <div class="ticket-stubs-ledger">
+      {howItWorksSteps.map((step, index) => (
+        <div class="ticket-stub-item" data-step={step.step}>
+          <!-- Ticket Left Notch -->
+          <div class="stub-notch notch-left"></div>
+          
+          <div class="ticket-inner-card">
+            <!-- Ticket Header -->
+            <div class="ticket-top-bar">
+              <div class="ticket-id-tag">
+                <span class="ticket-stub-num type-punch-md">{step.step}</span>
+                <span class="ticket-timeframe type-mono-sm">[{step.timeframe}]</span>
+              </div>
+              <div class="ticket-stamp-tag">
+                <span class="stamp-badge">{step.stamp}</span>
+              </div>
+            </div>
+
+            <!-- Ticket Core Content -->
+            <div class="ticket-body">
+              <h3 class="ticket-action-name type-punch-md">{step.label}</h3>
+              <p class="ticket-desc type-serif-body">{step.description}</p>
+            </div>
+
+            <!-- Ticket Footer / Annotation -->
+            <div class="ticket-annotation-row">
+              <span class="annotation-arrow">↳</span>
+              <span class="annotation-text type-handwriting">{step.annotation}</span>
+            </div>
+          </div>
+
+          <!-- Ticket Right Notch -->
+          <div class="stub-notch notch-right"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Production Guarantee Box -->
+    <div class="production-guarantee card-raw">
+      <div class="guarantee-stamp">
+        <span class="stamp-badge-green">GUARANTEE</span>
+      </div>
+      <div class="guarantee-content">
+        <h4 class="guarantee-title type-punch-md">ZERO EDITORIAL SURPRISES</h4>
+        <p class="type-serif-body">
+          Every deliverable includes a Notion docket with ready-to-copy text, suggested image pairings, hook options, and the specific [CHECK] notes flagged for verification.
+        </p>
+      </div>
+      <div class="guarantee-signature">
+        <span class="type-mono-sm">SIGNED // EDITORIAL CHIEF</span>
+        <span class="type-handwriting sig-draw">Steadure Desk</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .workflow-section {
+    padding-top: var(--sp-6);
+    padding-bottom: var(--sp-7);
+    background-color: var(--paper-base);
+    border-bottom: var(--border-thick);
+  }
+
+  .workflow-header-row {
+    margin-bottom: var(--sp-5);
+  }
+
+  .header-stamp-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-2);
+  }
+
+  .workflow-title {
+    margin-bottom: var(--sp-2);
+  }
+
+  .workflow-subhead {
+    max-width: 680px;
+    color: var(--ink-secondary);
+  }
+
+  /* Ticket Stubs Ledger */
+  .ticket-stubs-ledger {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-6);
+  }
+
+  .ticket-stub-item {
+    position: relative;
+    background-color: var(--paper-sheet);
+    border: var(--border-thick);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .ticket-stub-item:hover {
+    transform: translateX(6px);
+    border-color: var(--accent-vermilion);
+  }
+
+  .ticket-stub-item:nth-child(even) {
+    background-color: var(--paper-base);
+  }
+
+  /* Ticket Perforation Notches */
+  .stub-notch {
+    position: absolute;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    background-color: var(--paper-base);
+    border: 3px solid var(--ink-black);
+    transform: translateY(-50%) rotate(45deg);
+    z-index: 5;
+  }
+
+  .notch-left {
+    left: -11px;
+    border-right: none;
+    border-top: none;
+  }
+
+  .notch-right {
+    right: -11px;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .ticket-inner-card {
+    padding: var(--sp-4) clamp(24px, 4vw, 40px);
+  }
+
+  .ticket-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed var(--ink-faint);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ticket-id-tag {
+    display: flex;
+    align-items: baseline;
+    gap: var(--sp-2);
+  }
+
+  .ticket-stub-num {
+    color: var(--accent-vermilion);
+    line-height: 1;
+  }
+
+  .ticket-timeframe {
+    color: var(--ink-muted);
+    font-weight: 700;
+  }
+
+  .ticket-body {
+    margin-bottom: 14px;
+  }
+
+  .ticket-action-name {
+    margin-bottom: 6px;
+    color: var(--ink-black);
+  }
+
+  .ticket-desc {
+    color: var(--ink-secondary);
+    max-width: 820px;
+  }
+
+  .ticket-annotation-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid var(--paper-dark);
+    padding-top: 8px;
+  }
+
+  .annotation-arrow {
+    font-size: 1.2rem;
+    color: var(--accent-vermilion);
+    font-weight: 700;
+  }
+
+  .annotation-text {
+    font-size: 1.35rem;
+    color: var(--accent-vermilion);
+  }
+
+  /* Production Guarantee Box */
+  .production-guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    background-color: var(--paper-sunken);
+    border: var(--border-heavy);
+    padding: var(--sp-4);
+    flex-wrap: wrap;
+  }
+
+  .guarantee-content {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .guarantee-title {
+    margin-bottom: 4px;
+  }
+
+  .guarantee-signature {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-left: 2px solid var(--ink-black);
+    padding-left: var(--sp-3);
+  }
+
+  .sig-draw {
+    font-size: 1.8rem;
+    color: var(--accent-vermilion);
+  }
+</style>

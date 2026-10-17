@@ -1,0 +1,201 @@
+---
+import { founderLetter } from '../data/siteData.js';
+---
+
+<section id="about" class="founder-section">
+  <div class="container-zine">
+    <!-- Section Indicator -->
+    <div class="founder-ledger-header">
+      <span class="stamp-badge">07 // EDITORIAL STATEMENT</span>
+      <span class="type-mono-sm">MEMORANDUM FROM THE DESK</span>
+    </div>
+
+    <!-- Letter Stationery Sheet -->
+    <div class="letter-sheet card-elevated">
+      <div class="tape-strip tape-top-center"></div>
+
+      <!-- Letterhead -->
+      <div class="letterhead-row">
+        <div class="letterhead-brand">
+          <span class="type-punch-md">STEADURE EDITORIAL DESK</span>
+          <span class="type-mono-sm">DISPATCH REF: #042 // {founderLetter.date.toUpperCase()}</span>
+        </div>
+        <div class="letterhead-stamp">
+          <span class="stamp-badge-green">ORIGINAL DRAFT</span>
+        </div>
+      </div>
+
+      <!-- Letter Title -->
+      <h2 class="letter-headline type-serif-title">{founderLetter.headline}</h2>
+
+      <!-- Letter Body -->
+      <div class="letter-paragraphs type-serif-body">
+        {founderLetter.paragraphs.map((p, idx) => (
+          <p class={`letter-p ${idx === founderLetter.paragraphs.length - 1 ? 'letter-climax' : ''}`}>
+            {idx === 0 && <span class="drop-cap">M</span>}
+            {idx === 0 ? p.slice(1) : p}
+          </p>
+        ))}
+      </div>
+
+      <!-- Signature & Signoff Block -->
+      <div class="letter-signoff-block">
+        <div class="signoff-left">
+          <span class="signoff-label type-mono-sm">IN PERPETUAL MOTION,</span>
+          <div class="handwritten-signature type-handwriting">{founderLetter.signature}</div>
+          <span class="signoff-title type-mono-sm">{founderLetter.signoff}</span>
+          <span class="signoff-location type-mono-sm">{founderLetter.location}</span>
+        </div>
+
+        <div class="signoff-seal">
+          <div class="wax-seal-stamp">
+            <span class="seal-inner type-punch-md">S</span>
+            <span class="seal-text type-mono-sm">EST. 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .founder-section {
+    padding-top: var(--sp-6);
+    padding-bottom: var(--sp-7);
+    background-color: var(--paper-base);
+    border-bottom: var(--border-thick);
+  }
+
+  .founder-ledger-header {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-4);
+  }
+
+  .letter-sheet {
+    background-color: var(--paper-sheet);
+    border: var(--border-heavy);
+    padding: clamp(24px, 5vw, 56px);
+    position: relative;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    transform: rotate(-0.35deg);
+  }
+
+  .letterhead-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px dashed var(--ink-faint);
+    padding-bottom: 14px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .letterhead-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .letter-headline {
+    margin-bottom: 24px;
+    color: var(--ink-black);
+  }
+
+  .letter-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    color: var(--ink-secondary);
+    font-size: 1.18rem;
+    line-height: 1.65;
+  }
+
+  .drop-cap {
+    float: left;
+    font-family: var(--font-headline-punch);
+    font-size: 3.8rem;
+    line-height: 0.85;
+    margin-right: 12px;
+    margin-top: 4px;
+    color: var(--ink-black);
+    padding: 4px 8px;
+    background-color: var(--paper-sunken);
+    border: 2px solid var(--ink-black);
+  }
+
+  .letter-climax {
+    font-family: var(--font-headline-punch);
+    font-size: 1.25rem;
+    color: var(--ink-black);
+    border-left: 4px solid var(--accent-vermilion);
+    padding-left: 14px;
+    margin-top: 8px;
+  }
+
+  .letter-signoff-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: var(--border-thick);
+    padding-top: 24px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .signoff-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .signoff-label {
+    color: var(--ink-muted);
+  }
+
+  .handwritten-signature {
+    font-size: 2.8rem;
+    color: var(--accent-vermilion);
+    line-height: 1;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .signoff-title {
+    font-weight: 700;
+  }
+
+  .signoff-location {
+    color: var(--ink-faint);
+  }
+
+  /* Seal */
+  .wax-seal-stamp {
+    width: 72px;
+    height: 72px;
+    border: 3px solid var(--accent-vermilion);
+    background-color: rgba(217, 56, 30, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(8deg);
+  }
+
+  .seal-inner {
+    color: var(--accent-vermilion);
+    line-height: 1;
+    font-size: 1.6rem;
+  }
+
+  .seal-text {
+    font-size: 0.6rem;
+    color: var(--accent-vermilion);
+    font-weight: 700;
+  }
+</style>

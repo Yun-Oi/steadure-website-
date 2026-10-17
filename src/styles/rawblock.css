@@ -1,0 +1,526 @@
+/* ==========================================================================
+   STEADURE x RAWBLOCK DESIGN SYSTEM
+   Editorial Brutalism: Warm Paper, Deep Ink, Sharp Edges, Zero Radius
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette */
+  --ink-black: #141311;
+  --ink-secondary: #3A3833;
+  --ink-muted: #6B665C;
+  --ink-faint: #9E988A;
+  
+  --paper-base: #F4EFE6;
+  --paper-sheet: #FAF7F2;
+  --paper-sunken: #EBE4D5;
+  --paper-dark: #DDD3C1;
+  --paper-border: #141311;
+
+  --accent-vermilion: #D9381E;
+  --accent-vermilion-faint: rgba(217, 56, 30, 0.08);
+  --accent-highlighter: #F6E05E;
+  --accent-highlighter-faint: rgba(246, 224, 94, 0.4);
+  --accent-blue: #0000FF;
+  --accent-success: #008000;
+  --tape-color: rgba(225, 212, 178, 0.75);
+
+  /* Typography */
+  --font-headline-punch: 'Archivo Black', sans-serif;
+  --font-editorial-serif: 'Fraunces', Georgia, serif;
+  --font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-reading: 'Newsreader', Georgia, serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-handwriting: 'Caveat', cursive;
+
+  /* RawBlock Spacing Scale (Intentionally Asymmetric) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 16px;
+  --sp-4: 24px;
+  --sp-5: 40px;
+  --sp-6: 64px;
+  --sp-7: 80px;
+  --sp-8: 120px;
+
+  /* RawBlock Borders (Replacing Shadows Entirely) */
+  --border-thin: 1px solid var(--ink-black);
+  --border-thick: 3px solid var(--ink-black);
+  --border-heavy: 5px solid var(--ink-black);
+  --border-dashed: 2px dashed var(--ink-black);
+  --border-stamp: 3px solid var(--accent-vermilion);
+
+  /* Strict Zero Radius Rule */
+  --radius-none: 0px;
+}
+
+/* ==========================================================================
+   Base Styles & Reset
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* Non-negotiable zero radius */
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--paper-base);
+  color: var(--ink-black);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--paper-base);
+  color: var(--ink-black);
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Subtle Paper Texture Noise Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Ink Cursor (Desktop Only) */
+@media (pointer: fine) {
+  body {
+    cursor: default;
+  }
+  
+  .ink-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--ink-black);
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease-out, width 0.15s ease, height 0.15s ease, background-color 0.15s ease;
+  }
+
+  .ink-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--ink-black);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    opacity: 0.4;
+  }
+
+  body.cursor-hover .ink-cursor-dot {
+    width: 14px;
+    height: 14px;
+    background-color: var(--accent-vermilion);
+  }
+
+  body.cursor-hover .ink-cursor-ring {
+    width: 36px;
+    height: 36px;
+    border-color: var(--accent-vermilion);
+    opacity: 0.8;
+  }
+}
+
+/* ==========================================================================
+   Typography Hierarchy (RawBlock + Editorial Warmth)
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ink-black);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.type-punch-xl {
+  font-family: var(--font-headline-punch);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.0;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+.type-punch-lg {
+  font-family: var(--font-headline-punch);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.type-punch-md {
+  font-family: var(--font-headline-punch);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.type-serif-title {
+  font-family: var(--font-editorial-serif);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.type-serif-body {
+  font-family: var(--font-reading);
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+.type-mono {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.type-mono-sm {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.type-handwriting {
+  font-family: var(--font-handwriting);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: var(--accent-vermilion);
+}
+
+/* Link Styling */
+a {
+  color: var(--ink-black);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+a.link-ghost {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+
+a.link-ghost:hover {
+  color: var(--accent-blue) !important;
+}
+
+/* ==========================================================================
+   Buttons (RawBlock Inversion States)
+   ========================================================================== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  background-color: var(--ink-black);
+  color: var(--paper-base);
+  border: var(--border-thick);
+  padding: 12px 28px;
+  font-family: var(--font-headline-punch);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, border-width 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--paper-sheet);
+  color: var(--ink-black);
+}
+
+.btn-primary:active {
+  background-color: var(--ink-black);
+  color: var(--paper-base);
+  border: var(--border-heavy);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  background-color: var(--paper-sheet);
+  color: var(--ink-black);
+  border: var(--border-thick);
+  padding: 12px 28px;
+  font-family: var(--font-headline-punch);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--ink-black);
+  color: var(--paper-base);
+}
+
+.btn-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  background-color: transparent;
+  color: var(--accent-vermilion);
+  border: var(--border-stamp);
+  padding: 10px 24px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-stamp:hover {
+  background-color: var(--accent-vermilion);
+  color: var(--paper-sheet);
+}
+
+/* ==========================================================================
+   Cards & Physical Paper Containers
+   ========================================================================== */
+.card-raw {
+  background-color: var(--paper-sheet);
+  border: var(--border-thick);
+  padding: var(--sp-4);
+  position: relative;
+}
+
+.card-elevated {
+  background-color: var(--paper-sheet);
+  border: var(--border-heavy);
+  padding: var(--sp-4);
+  position: relative;
+}
+
+.card-sunken {
+  background-color: var(--paper-sunken);
+  border: var(--border-thick);
+  padding: var(--sp-4);
+  position: relative;
+}
+
+/* Physical Paper Tape Strip */
+.tape-strip {
+  position: absolute;
+  height: 20px;
+  background-color: var(--tape-color);
+  border-left: 1px dashed rgba(0, 0, 0, 0.25);
+  border-right: 1px dashed rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  z-index: 10;
+  backdrop-filter: blur(1px);
+}
+
+.tape-top-center {
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+  width: 90px;
+}
+
+.tape-corner-left {
+  top: -12px;
+  left: -12px;
+  width: 70px;
+  transform: rotate(-28deg);
+}
+
+.tape-corner-right {
+  top: -12px;
+  right: -12px;
+  width: 70px;
+  transform: rotate(28deg);
+}
+
+/* Rubber Ink Stamps */
+.stamp-badge {
+  display: inline-block;
+  font-family: var(--font-headline-punch);
+  color: var(--accent-vermilion);
+  border: 3px solid var(--accent-vermilion);
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transform: rotate(-2.5deg);
+  background-color: rgba(217, 56, 30, 0.04);
+  user-select: none;
+}
+
+.stamp-badge-green {
+  display: inline-block;
+  font-family: var(--font-headline-punch);
+  color: var(--accent-success);
+  border: 3px solid var(--accent-success);
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transform: rotate(1.5deg);
+  background-color: rgba(0, 128, 0, 0.04);
+}
+
+/* Editorial Red-Pen Margin Note */
+.margin-note-check {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-vermilion);
+  border-left: 3px solid var(--accent-vermilion);
+  padding-left: var(--sp-2);
+  margin-top: var(--sp-2);
+  line-height: 1.35;
+  background-color: var(--accent-vermilion-faint);
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* Yellow Highlighter Marker */
+.highlighter-text {
+  background: linear-gradient(104deg, rgba(246, 224, 94, 0) 0.9%, rgba(246, 224, 94, 0.9) 2.4%, rgba(246, 224, 94, 0.8) 98%, rgba(246, 224, 94, 0) 100%);
+  padding: 0 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.hl-active {
+  background-color: var(--accent-highlighter) !important;
+  color: var(--ink-black) !important;
+  transition: background-color 0.25s ease;
+}
+
+/* Perforated Receipt Ticker Edge */
+.perforated-edge-bottom {
+  position: relative;
+}
+.perforated-edge-bottom::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-image: radial-gradient(circle, transparent 3px, var(--paper-sheet) 3.5px);
+  background-size: 12px 6px;
+  background-repeat: repeat-x;
+}
+
+/* ==========================================================================
+   Inputs (RawBlock Specifications)
+   ========================================================================== */
+.input-raw {
+  width: 100%;
+  background-color: var(--paper-sunken);
+  color: var(--ink-black);
+  border: var(--border-thick);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-width 0.15s ease, background-color 0.15s ease;
+}
+
+.input-raw:hover {
+  background-color: #E2DAC8;
+}
+
+.input-raw:focus {
+  border: var(--border-heavy);
+  background-color: var(--paper-sheet);
+}
+
+.input-label {
+  display: block;
+  font-family: var(--font-headline-punch);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--sp-1);
+}
+
+.input-helper {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  margin-top: var(--sp-1);
+}
+
+/* ==========================================================================
+   Layout Containers & Grid Utilities
+   ========================================================================== */
+.container-zine {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
+}
+
+.section-divider {
+  border-top: var(--border-thick);
+}
+
+.grid-ledger {
+  display: grid;
+  border-top: var(--border-thick);
+  border-left: var(--border-thick);
+}
+
+.grid-ledger > * {
+  border-right: var(--border-thick);
+  border-bottom: var(--border-thick);
+}
+
+/* Subtle Hand-made Rotations */
+.tilt-left {
+  transform: rotate(-1.25deg);
+}
+.tilt-right {
+  transform: rotate(1.25deg);
+}
+
+/* Reduce Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

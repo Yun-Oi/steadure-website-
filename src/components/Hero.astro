@@ -1,0 +1,480 @@
+---
+import { siteConfig, sampleTranscript } from '../data/siteData.js';
+---
+
+<section id="hero-split" class="hero-section">
+  <div class="container-zine">
+    <!-- Top Editorial Metadata Stamp -->
+    <div class="hero-ledger-bar">
+      <div class="ledger-item">
+        <span class="ledger-label">DISPATCH:</span>
+        <span class="ledger-val">EDITORIAL INTELLIGENCE FOR FINANCE EDUCATORS</span>
+      </div>
+      <div class="ledger-item">
+        <span class="ledger-label">THE MANDATE:</span>
+        <span class="ledger-val">ONE SPOKEN VIDEO → SIX PRINTED ASSETS</span>
+      </div>
+      <div class="ledger-item">
+        <span class="stamp-badge">100% HUMAN EDITORIAL</span>
+      </div>
+    </div>
+
+    <!-- Main Headline & Subtitle -->
+    <div class="hero-copy-block">
+      <h1 class="hero-headline type-punch-xl">
+        BUILD TO KEEP YOU <span class="moving-word-wrapper">
+          <span class="moving-text">MOVING.</span>
+          <svg class="moving-ink-underline" viewBox="0 0 280 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 12C50 4 150 14 276 6C200 16 90 12 12 15" stroke="var(--accent-vermilion)" stroke-width="4.5" stroke-linecap="square"/>
+          </svg>
+        </span>
+      </h1>
+
+      <p class="hero-subline type-serif-body">
+        We turn one finance video into posts, threads, newsletters and emails, so your ideas reach people who read.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="hero-actions">
+        <a href="#live-demo" class="btn-primary hero-btn-cta">
+          SEE IT WORK <span class="arrow-down">↓</span>
+        </a>
+        <a href="#contact" class="link-ghost hero-link-secondary">
+          WORK WITH US →
+        </a>
+      </div>
+    </div>
+
+    <!-- The Visual "Split": One Video Roll Spreading into Many Pages -->
+    <div class="split-workbench">
+      <div class="split-header-tag">
+        <span class="split-dot"></span> THE REPURPOSING SPLIT // LIVE VISUALIZATION
+      </div>
+
+      <div class="split-canvas">
+        <!-- LEFT: Spoken Video Transcript Paper Strip (Receipt / Ticker Roll) -->
+        <div class="transcript-paper-roll">
+          <div class="tape-strip tape-top-center"></div>
+          <div class="paper-roll-header">
+            <div class="roll-red-stamp">RAW TRANSCRIPT ROLL</div>
+            <div class="roll-meta">SRC: YOUTUBE // 18:42 AUDIO</div>
+          </div>
+
+          <div class="ticker-scroll-window">
+            <div class="ticker-content" id="heroTickerContent">
+              {sampleTranscript.lines.map((line) => (
+                <div class="ticker-line">
+                  <span class="ticker-time">{line.timestamp}</span>
+                  <p class="ticker-text">{line.text}</p>
+                </div>
+              ))}
+              <!-- Duplicate for continuous infinite scroll feel -->
+              {sampleTranscript.lines.map((line) => (
+                <div class="ticker-line ticker-clone">
+                  <span class="ticker-time">{line.timestamp}</span>
+                  <p class="ticker-text">{line.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="tear-edge-divider">
+            <span class="tear-label">--- SEPARATION POINT // EDITORIAL SPLIT ---</span>
+          </div>
+        </div>
+
+        <!-- RIGHT: The Split Pieces Flying into 4 Physical Output Cards -->
+        <div class="split-outputs-deck">
+          <!-- Card 1: X Thread -->
+          <div class="split-card split-card-1">
+            <div class="tape-strip tape-corner-left"></div>
+            <div class="card-tag-row">
+              <span class="output-type-stamp">01 // X THREAD</span>
+              <span class="stamp-badge">STRONGEST HOOK</span>
+            </div>
+            <div class="card-sample-snippet">
+              <span class="line-lead">1/3</span> “Over 9 CRORE Indians filed taxes last year. We taught 6 LAKHS of them. That's 0.67%...”
+            </div>
+            <div class="card-footer-meta">
+              <span>HOOK EXPANDED</span>
+              <span class="meta-check">✓ FACT-CHECKED</span>
+            </div>
+          </div>
+
+          <!-- Card 2: LinkedIn Post -->
+          <div class="split-card split-card-2">
+            <div class="card-tag-row">
+              <span class="output-type-stamp">02 // LINKEDIN STORY</span>
+              <span class="stamp-badge-green">EXECUTIVE READ</span>
+            </div>
+            <div class="card-sample-snippet">
+              “The 0.67% Paradox in Indian Wealth. Indians do not have an income problem. We have a continuous guidance problem...”
+            </div>
+            <div class="card-footer-meta">
+              <span>FOUNDER VOICE</span>
+              <span class="meta-check">✓ LONG-FORM</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Newsletter -->
+          <div class="split-card split-card-3">
+            <div class="tape-strip tape-corner-right"></div>
+            <div class="card-tag-row">
+              <span class="output-type-stamp">03 // NEWSLETTER</span>
+              <span class="stamp-badge">3 MIN READ</span>
+            </div>
+            <div class="card-sample-snippet">
+              <span class="line-lead">SUBJECT:</span> 6 lakh out of 9 crore. That's 0.67%.
+              <div class="snippet-sub">Why personal finance advice breaks down the moment you get a raise...</div>
+            </div>
+            <div class="card-footer-meta">
+              <span>HIGH OPEN-RATE</span>
+              <span class="meta-check">✓ SUBSTACK / BEEHIIV</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Email Letter -->
+          <div class="split-card split-card-4">
+            <div class="card-tag-row">
+              <span class="output-type-stamp">04 // EMAIL LETTER</span>
+              <span class="stamp-badge">1-ON-1 INTIMATE</span>
+            </div>
+            <div class="card-sample-snippet">
+              “'Should I buy that 3-crore flat?' A follower DM'd me that yesterday. Here is what I told him before he signed the EMI...”
+            </div>
+            <div class="card-footer-meta">
+              <span>DIRECT RESPONSE</span>
+              <span class="meta-check">✓ PRIVATE NOTE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding-top: var(--sp-5);
+    padding-bottom: var(--sp-6);
+    border-bottom: var(--border-thick);
+    background-color: var(--paper-base);
+  }
+
+  .hero-ledger-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: var(--border-thick);
+    border-bottom: var(--border-thick);
+    padding: 8px 12px;
+    margin-bottom: var(--sp-5);
+    background-color: var(--paper-sunken);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .ledger-label {
+    font-weight: 700;
+    color: var(--accent-vermilion);
+    margin-right: 6px;
+  }
+
+  .ledger-val {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-copy-block {
+    margin-bottom: var(--sp-6);
+  }
+
+  .hero-headline {
+    color: var(--ink-black);
+    margin-bottom: var(--sp-3);
+  }
+
+  .moving-word-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .moving-text {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    animation: wordDrift 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes wordDrift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-3px); }
+  }
+
+  .moving-ink-underline {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  .moving-ink-underline path {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawUnderline 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+  }
+
+  @keyframes drawUnderline {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .hero-subline {
+    max-width: 680px;
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+    color: var(--ink-secondary);
+    line-height: 1.45;
+    margin-bottom: var(--sp-4);
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    flex-wrap: wrap;
+  }
+
+  .arrow-down {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+
+  .hero-btn-cta:hover .arrow-down {
+    transform: translateY(3px);
+  }
+
+  .hero-link-secondary {
+    font-family: var(--font-headline-punch);
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* The Split Visualization */
+  .split-workbench {
+    border: var(--border-heavy);
+    background-color: var(--paper-sheet);
+    position: relative;
+  }
+
+  .split-header-tag {
+    background-color: var(--ink-black);
+    color: var(--paper-sheet);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .split-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-vermilion);
+    display: inline-block;
+  }
+
+  .split-canvas {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: var(--border-thick);
+  }
+
+  @media (min-width: 1024px) {
+    .split-canvas {
+      grid-template-columns: 340px 1fr;
+    }
+  }
+
+  /* Left: Transcript Paper Roll */
+  .transcript-paper-roll {
+    background-color: var(--paper-base);
+    border-bottom: var(--border-thick);
+    padding: var(--sp-4);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 1024px) {
+    .transcript-paper-roll {
+      border-right: var(--border-thick);
+      border-bottom: none;
+    }
+  }
+
+  .paper-roll-header {
+    border-bottom: 2px dashed var(--ink-black);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  .roll-red-stamp {
+    font-family: var(--font-headline-punch);
+    font-size: 0.8rem;
+    color: var(--accent-vermilion);
+    letter-spacing: 1px;
+  }
+
+  .roll-meta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+  }
+
+  .ticker-scroll-window {
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ticker-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    animation: scrollTicker 28s linear infinite;
+  }
+
+  .ticker-scroll-window:hover .ticker-content {
+    animation-play-state: paused;
+  }
+
+  @keyframes scrollTicker {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  .ticker-line {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    border-left: 2px solid var(--ink-faint);
+    padding-left: 8px;
+  }
+
+  .ticker-time {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--accent-vermilion);
+    font-weight: 700;
+  }
+
+  .ticker-text {
+    color: var(--ink-black);
+  }
+
+  .tear-edge-divider {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 2px dashed var(--ink-black);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--ink-muted);
+    text-align: center;
+  }
+
+  /* Right: Split Output Cards */
+  .split-outputs-deck {
+    padding: var(--sp-4);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+    background-color: var(--paper-sheet);
+  }
+
+  @media (min-width: 640px) {
+    .split-outputs-deck {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .split-card {
+    background-color: var(--paper-base);
+    border: var(--border-thick);
+    padding: 16px;
+    position: relative;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .split-card:hover {
+    transform: translateY(-4px) rotate(0.5deg);
+    border-color: var(--accent-vermilion);
+  }
+
+  .split-card-1 { transform: rotate(-0.75deg); }
+  .split-card-2 { transform: rotate(0.85deg); }
+  .split-card-3 { transform: rotate(0.5deg); }
+  .split-card-4 { transform: rotate(-0.5deg); }
+
+  .card-tag-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--ink-black);
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .output-type-stamp {
+    font-family: var(--font-headline-punch);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: var(--ink-black);
+  }
+
+  .card-sample-snippet {
+    font-family: var(--font-reading);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--ink-black);
+    min-height: 72px;
+    margin-bottom: 12px;
+  }
+
+  .line-lead {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--accent-vermilion);
+    font-size: 0.8rem;
+  }
+
+  .snippet-sub {
+    font-size: 0.85rem;
+    color: var(--ink-secondary);
+    margin-top: 4px;
+  }
+
+  .card-footer-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--ink-muted);
+    border-top: 1px dashed var(--ink-faint);
+    padding-top: 6px;
+  }
+
+  .meta-check {
+    color: var(--accent-success);
+    font-weight: 700;
+  }
+</style>

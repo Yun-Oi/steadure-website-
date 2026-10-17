@@ -1,23 +1,93 @@
+---
+import '../styles/rawblock.css';
+import { siteConfig } from '../data/siteData.js';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Steadure | build to keep you moving.",
+  description = "We turn one finance video into posts, threads, newsletters and emails, so your ideas reach people who read."
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#F4EFE6" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Steadure" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <!-- Custom Ink Cursor Elements (Desktop Only) -->
+    <div class="ink-cursor-dot" id="inkCursorDot" aria-hidden="true"></div>
+    <div class="ink-cursor-ring" id="inkCursorRing" aria-hidden="true"></div>
+
+    <slot />
+
+    <!-- Ink Cursor Tracking Script -->
+    <script>
+      function initInkCursor() {
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
+        const dot = document.getElementById('inkCursorDot');
+        const ring = document.getElementById('inkCursorRing');
+        if (!dot || !ring) return;
+
+        let mouseX = -100;
+        let mouseY = -100;
+        let ringX = -100;
+        let ringY = -100;
+
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        });
+
+        function animateRing() {
+          ringX += (mouseX - ringX) * 0.18;
+          ringY += (mouseY - ringY) * 0.18;
+          ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+          requestAnimationFrame(animateRing);
+        }
+        requestAnimationFrame(animateRing);
+
+        // Hover expand effect on interactive elements
+        const hoverTargets = document.querySelectorAll('a, button, input, textarea, [role="tab"]');
+        hoverTargets.forEach((el) => {
+          el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+          el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initInkCursor);
+      } else {
+        initInkCursor();
+      }
+    </script>
+  </body>
+</html>

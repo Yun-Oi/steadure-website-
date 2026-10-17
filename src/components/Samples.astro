@@ -1,0 +1,405 @@
+---
+import { samplePacks } from '../data/siteData.js';
+---
+
+<section id="samples" class="samples-section">
+  <div class="container-zine">
+    <!-- Header -->
+    <div class="samples-header-row">
+      <div class="header-stamp-wrap">
+        <span class="stamp-badge">06 // WORK ARCHIVE</span>
+        <span class="type-mono-sm">REAL CAMPAIGNS // VERIFIED RESULTS</span>
+      </div>
+      <h2 class="samples-title type-punch-lg">THE SAMPLE PACK ARCHIVE</h2>
+      <p class="samples-subhead type-serif-body">
+        Flip through real repurposed content packs. Inspect how single long-form YouTube releases became multi-channel written assets.
+      </p>
+    </div>
+
+    <!-- Interactive Paper Sheet Stack Deck -->
+    <div class="sample-deck-wrapper">
+      <!-- Selector Tabs / Ledger -->
+      <div class="deck-selector-ledger" role="tablist" aria-label="Select Sample Pack">
+        {samplePacks.map((pack, idx) => (
+          <button 
+            class={`sample-selector-btn ${idx === 0 ? 'active' : ''}`}
+            role="tab"
+            aria-selected={idx === 0 ? "true" : "false"}
+            aria-controls={`sample-sheet-${pack.id}`}
+            id={`sample-tab-${pack.id}`}
+            data-target={pack.id}
+          >
+            <div class="btn-top-row">
+              <span class="sample-num type-punch-md">0{idx + 1}.</span>
+              <span class="sample-cat type-mono-sm">{pack.category}</span>
+            </div>
+            <div class="sample-btn-title type-punch-md">{pack.title}</div>
+            <div class="sample-btn-badge">
+              <span class="stamp-badge">{pack.badge}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <!-- Active Display Stack (Physical Sheets Stack) -->
+      <div class="sheets-display-stage">
+        {samplePacks.map((pack, idx) => (
+          <div 
+            class={`sample-sheet-card card-elevated ${idx === 0 ? 'active' : ''}`}
+            id={`sample-sheet-${pack.id}`}
+            role="tabpanel"
+            aria-labelledby={`sample-tab-${pack.id}`}
+          >
+            <div class="tape-strip tape-corner-left"></div>
+            <div class="tape-strip tape-corner-right"></div>
+
+            <div class="sheet-status-ribbon">
+              <div class="ribbon-left">
+                <span class="stamp-badge-green">CASE STUDY // {pack.category.toUpperCase()}</span>
+                <span class="type-mono-sm">SOURCE AUDIO: {pack.videoStats}</span>
+              </div>
+              <div class="ribbon-right">
+                <span class="stamp-badge">SAMPLE DOCKET</span>
+              </div>
+            </div>
+
+            <div class="sheet-main-content">
+              <h3 class="sheet-heading type-punch-md">{pack.title}</h3>
+              <p class="sheet-summary type-serif-body">{pack.summary}</p>
+
+              <!-- Deliverables Breakdown Grid -->
+              <div class="pack-breakdown-box card-sunken">
+                <div class="box-row">
+                  <span class="box-label type-mono-sm">DELIVERABLES PACK:</span>
+                  <span class="box-val type-mono">{pack.deliverables}</span>
+                </div>
+                <div class="box-row">
+                  <span class="box-label type-mono-sm">CAMPAIGN REACH:</span>
+                  <span class="box-val type-mono highlight-reach">{pack.results}</span>
+                </div>
+              </div>
+
+              <!-- Editorial Notes on This Pack -->
+              <div class="pack-editorial-notes">
+                <h4 class="notes-heading type-mono-sm">EDITORIAL STRATEGY APPLIED:</h4>
+                <div class="strategy-points-grid">
+                  <div class="strategy-point card-raw">
+                    <span class="point-num type-mono-sm">A.</span>
+                    <p class="type-serif-body">Extracted the statistical disparity (0.67% literate vs 9 Crore filers) to build an irrefutable hook.</p>
+                  </div>
+                  <div class="strategy-point card-raw">
+                    <span class="point-num type-mono-sm">B.</span>
+                    <p class="type-serif-body">Formatted LinkedIn release with executive spacing to attract angel investors and high-bracket earners.</p>
+                  </div>
+                  <div class="strategy-point card-raw">
+                    <span class="point-num type-mono-sm">C.</span>
+                    <p class="type-serif-body">Created a 1-on-1 personal email letter resolving the emotional anxiety behind real estate FOMO.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sheet-footer-action">
+              <span class="footer-msg type-mono-sm">WANT THIS SAME EDITORIAL TREATMENT FOR YOUR NEXT VIDEO?</span>
+              <a href="#contact" class="btn-primary sheet-cta-btn">REQUEST SAMPLE AUDIT →</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initSamples() {
+    const tabs = document.querySelectorAll('.sample-selector-btn');
+    const sheets = document.querySelectorAll('.sample-sheet-card');
+
+    if (!tabs.length) return;
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('data-target');
+
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        sheets.forEach(sheet => {
+          sheet.classList.remove('active');
+        });
+        const activeSheet = document.getElementById(`sample-sheet-${targetId}`);
+        if (activeSheet) {
+          activeSheet.classList.add('active');
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSamples);
+  } else {
+    initSamples();
+  }
+</script>
+
+<style>
+  .samples-section {
+    padding-top: var(--sp-6);
+    padding-bottom: var(--sp-7);
+    background-color: var(--paper-base);
+    border-bottom: var(--border-thick);
+  }
+
+  .samples-header-row {
+    margin-bottom: var(--sp-5);
+  }
+
+  .header-stamp-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-2);
+  }
+
+  .samples-title {
+    margin-bottom: var(--sp-2);
+  }
+
+  .samples-subhead {
+    max-width: 680px;
+    color: var(--ink-secondary);
+  }
+
+  /* Deck Layout */
+  .sample-deck-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
+
+  @media (min-width: 1024px) {
+    .sample-deck-wrapper {
+      grid-template-columns: 360px 1fr;
+    }
+  }
+
+  .deck-selector-ledger {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .sample-selector-btn {
+    background-color: var(--paper-sheet);
+    border: var(--border-thick);
+    padding: var(--sp-3);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sample-selector-btn:hover {
+    background-color: var(--paper-sunken);
+    transform: translateX(4px);
+  }
+
+  .sample-selector-btn.active {
+    background-color: var(--ink-black);
+    color: var(--paper-sheet);
+    border: var(--border-heavy);
+  }
+
+  .btn-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .sample-num {
+    color: var(--accent-vermilion);
+  }
+
+  .sample-selector-btn.active .sample-num {
+    color: var(--accent-highlighter);
+  }
+
+  .sample-cat {
+    color: var(--ink-muted);
+  }
+
+  .sample-selector-btn.active .sample-cat {
+    color: var(--paper-dark);
+  }
+
+  .sample-btn-title {
+    font-size: 1.1rem;
+    color: var(--ink-black);
+  }
+
+  .sample-selector-btn.active .sample-btn-title {
+    color: var(--paper-sheet);
+  }
+
+  /* Sheets Display Stage */
+  .sheets-display-stage {
+    position: relative;
+    min-height: 480px;
+  }
+
+  .sample-sheet-card {
+    display: none;
+    background-color: var(--paper-sheet);
+    border: var(--border-heavy);
+    padding: clamp(20px, 4vw, 36px);
+    position: relative;
+    animation: sheetStampIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .sample-sheet-card.active {
+    display: block;
+  }
+
+  @keyframes sheetStampIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .sheet-status-ribbon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed var(--ink-black);
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ribbon-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .sheet-heading {
+    margin-bottom: 10px;
+    color: var(--ink-black);
+  }
+
+  .sheet-summary {
+    color: var(--ink-secondary);
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+  }
+
+  .pack-breakdown-box {
+    padding: 16px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .box-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  @media (min-width: 640px) {
+    .box-row {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .box-label {
+    color: var(--accent-vermilion);
+    font-weight: 700;
+  }
+
+  .box-val {
+    font-weight: 700;
+  }
+
+  .highlight-reach {
+    color: var(--accent-success);
+    background-color: rgba(0, 128, 0, 0.08);
+    padding: 2px 6px;
+  }
+
+  /* Strategy points */
+  .pack-editorial-notes {
+    margin-bottom: 24px;
+  }
+
+  .notes-heading {
+    color: var(--ink-muted);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .strategy-points-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
+
+  @media (min-width: 768px) {
+    .strategy-points-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .strategy-point {
+    padding: 14px;
+    background-color: var(--paper-base);
+  }
+
+  .point-num {
+    color: var(--accent-vermilion);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .strategy-point p {
+    font-size: 0.95rem;
+    color: var(--ink-black);
+  }
+
+  .sheet-footer-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: var(--border-thick);
+    padding-top: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-msg {
+    font-weight: 700;
+    color: var(--ink-secondary);
+  }
+
+  .sheet-cta-btn {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+  }
+</style>

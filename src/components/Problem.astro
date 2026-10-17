@@ -1,0 +1,122 @@
+---
+---
+
+<section id="problem" class="problem-section">
+  <div class="container-zine">
+    <div class="problem-ledger-header">
+      <span class="stamp-badge">02 // THE PROBLEM</span>
+      <span class="ledger-annotation">THE ASYMMETRY OF MEDIA CONSUMPTION</span>
+    </div>
+
+    <div class="problem-card">
+      <div class="tape-strip tape-top-center"></div>
+      
+      <p class="problem-lead-tag type-mono-sm">UNSPOKEN REALITY FOR MODERN EDUCATORS</p>
+      
+      <h2 class="problem-statement type-punch-lg">
+        YOUR BEST VIDEO LIVES ON <span class="invert-block">ONE PLATFORM.</span><br />
+        YOUR READERS LIVE ON <span class="highlighter-text hl-mark">FIVE.</span>
+      </h2>
+
+      <div class="problem-notes-grid">
+        <div class="note-box">
+          <div class="note-label type-mono-sm">[01] THE ATTENTION SPLIT</div>
+          <p class="type-serif-body">
+            High-net-worth investors, CXOs, and tech founders rarely sit through a 34-minute YouTube video. They scan executive summaries, save X threads at dawn, and read newsletters before opening their inbox.
+          </p>
+        </div>
+
+        <div class="note-box">
+          <div class="note-label type-mono-sm">[02] THE REPURPOSING TRAP</div>
+          <p class="type-serif-body">
+            Generic AI tools generate bland bullet-point slop that kills creator trust. Real editorial requires print-grade taste: excavating the counter-intuitive hooks and mathematical proofs that make people hit <em>Share</em>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .problem-section {
+    padding-top: var(--sp-6);
+    padding-bottom: var(--sp-6);
+    background-color: var(--paper-base);
+    border-bottom: var(--border-thick);
+  }
+
+  .problem-ledger-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--sp-3);
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+
+  .ledger-annotation {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    letter-spacing: 1px;
+  }
+
+  .problem-card {
+    background-color: var(--paper-sheet);
+    border: var(--border-heavy);
+    padding: clamp(24px, 5vw, 48px);
+    position: relative;
+  }
+
+  .problem-lead-tag {
+    color: var(--accent-vermilion);
+    font-weight: 700;
+    margin-bottom: var(--sp-2);
+  }
+
+  .problem-statement {
+    color: var(--ink-black);
+    line-height: 1.15;
+    margin-bottom: var(--sp-5);
+  }
+
+  .invert-block {
+    background-color: var(--ink-black);
+    color: var(--paper-sheet);
+    padding: 0 8px;
+    display: inline-block;
+  }
+
+  .hl-mark {
+    background-color: var(--accent-highlighter);
+    color: var(--ink-black);
+    padding: 0 8px;
+    display: inline-block;
+  }
+
+  .problem-notes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+    border-top: var(--border-thick);
+    padding-top: var(--sp-4);
+  }
+
+  @media (min-width: 768px) {
+    .problem-notes-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .note-box {
+    background-color: var(--paper-sunken);
+    border: var(--border-thick);
+    padding: var(--sp-3);
+  }
+
+  .note-label {
+    color: var(--accent-vermilion);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+</style>

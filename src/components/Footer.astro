@@ -1,0 +1,158 @@
+---
+import { siteConfig } from '../data/siteData.js';
+---
+
+<footer class="site-footer">
+  <div class="container-zine">
+    <!-- Colophon Grid -->
+    <div class="footer-colophon-grid">
+      <!-- Left: Brand & Tagline -->
+      <div class="colophon-brand">
+        <div class="footer-logo type-punch-md">STEADURE</div>
+        <p class="footer-tagline type-serif-body">“{siteConfig.tagline}”</p>
+        <p class="footer-mission type-mono-sm">
+          Turning one finance video into posts, threads, newsletters and emails.
+        </p>
+      </div>
+
+      <!-- Center: Colophon Metadata -->
+      <div class="colophon-meta type-mono-sm">
+        <div class="meta-item">
+          <span class="meta-k">SYSTEM:</span>
+          <span class="meta-v">OPERATIONAL // INTAKE OPEN</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-k">EDITORIAL:</span>
+          <span class="meta-v">HUMAN-CRAFTED // BANGALORE & LONDON</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-k">SPEC:</span>
+          <span class="meta-v">RAWBLOCK BRUTALISM // ZERO BORDER RADIUS</span>
+        </div>
+      </div>
+
+      <!-- Right: Colophon Credits & Back to Top -->
+      <div class="colophon-right">
+        <p class="footer-credits type-mono">
+          Made by hand, with ink and Steadure.
+        </p>
+        <a href="#hero-split" class="btn-stamp back-to-top-btn">
+          RETURN TO TOP ↑
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Ticker Bar -->
+    <div class="footer-ticker-bar type-mono-sm">
+      <span>© 2026 STEADURE EDITORIAL. ALL RIGHTS RESERVED.</span>
+      <span class="ticker-dot">•</span>
+      <span>ONE VIDEO. MANY PAGES.</span>
+      <span class="ticker-dot">•</span>
+      <span>BUILT TO KEEP YOU MOVING.</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--paper-sheet);
+    border-top: var(--border-heavy);
+    padding-top: var(--sp-6);
+    padding-bottom: var(--sp-5);
+  }
+
+  .footer-colophon-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+    border-bottom: var(--border-thick);
+    padding-bottom: var(--sp-5);
+    margin-bottom: var(--sp-4);
+  }
+
+  @media (min-width: 768px) {
+    .footer-colophon-grid {
+      grid-template-columns: 1.2fr 1fr 1fr;
+    }
+  }
+
+  .footer-logo {
+    display: inline-block;
+    background-color: var(--ink-black);
+    color: var(--paper-sheet);
+    padding: 2px 8px;
+    margin-bottom: 8px;
+  }
+
+  .footer-tagline {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink-secondary);
+    margin-bottom: 6px;
+  }
+
+  .footer-mission {
+    color: var(--ink-muted);
+  }
+
+  .colophon-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-left: 1px dashed var(--ink-faint);
+    padding-left: var(--sp-3);
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .meta-k {
+    color: var(--accent-vermilion);
+    font-weight: 700;
+  }
+
+  .meta-v {
+    color: var(--ink-black);
+  }
+
+  .colophon-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .colophon-right {
+      align-items: flex-end;
+      text-align: right;
+    }
+  }
+
+  .footer-credits {
+    font-size: 0.85rem;
+    color: var(--ink-secondary);
+    font-weight: 700;
+  }
+
+  .back-to-top-btn {
+    font-size: 0.75rem;
+  }
+
+  /* Bottom Bar */
+  .footer-ticker-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+
+  .ticker-dot {
+    color: var(--accent-vermilion);
+  }
+</style>

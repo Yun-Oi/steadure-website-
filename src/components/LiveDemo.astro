@@ -1,0 +1,845 @@
+---
+import { sampleTranscript, demoOutputs } from '../data/siteData.js';
+---
+
+<section id="live-demo" class="demo-section">
+  <div class="container-zine">
+    <!-- Section Header -->
+    <div class="demo-section-header">
+      <div class="header-stamp-wrap">
+        <span class="stamp-badge">03 // LIVE DEMO</span>
+        <span class="header-edition-tag">TRANSCRIPT → REPURPOSED ASSETS</span>
+      </div>
+      <h2 class="demo-main-title type-punch-lg">ONE VIDEO IN. FOUR ASSETS OUT.</h2>
+      <p class="demo-subhead type-serif-body">
+        Select an asset tab on the right desk. Watch the corresponding spoken lines illuminate on the left transcript paper in highlighter yellow.
+      </p>
+    </div>
+
+    <!-- The Workbench Frame -->
+    <div class="workbench-frame card-elevated">
+      <div class="tape-strip tape-corner-left"></div>
+      <div class="tape-strip tape-corner-right"></div>
+
+      <!-- Workbench Status Bar -->
+      <div class="workbench-status-bar">
+        <div class="status-left">
+          <span class="status-indicator"></span>
+          <span class="type-mono-sm">ACTIVE BENCH: THE 1% CLUB // AICFO ANNOUNCEMENT (18:42 AUDIO)</span>
+        </div>
+        <div class="status-right type-mono-sm">
+          <span>INTERACTIVE COMPARISON</span>
+        </div>
+      </div>
+
+      <!-- Two-Column Workbench Layout -->
+      <div class="workbench-grid">
+        <!-- LEFT COLUMN: The Raw Spoken Transcript -->
+        <div class="transcript-column">
+          <div class="column-banner">
+            <span class="banner-title type-mono-sm">RAW SPOKEN TRANSCRIPT [YOUTUBE]</span>
+            <span class="banner-hint type-mono-sm">YELLOW = EXTRACTED HOOKS</span>
+          </div>
+
+          <div class="transcript-paper-sheet">
+            <div class="transcript-meta-header">
+              <span class="file-name">SOURCE_TAPE_AUDIO_TRACK.WAV</span>
+              <span class="duration-badge">18:42 TOTAL</span>
+            </div>
+
+            <!-- Spoken Lines List -->
+            <div class="transcript-lines-list" id="transcriptLinesContainer">
+              {sampleTranscript.lines.map((line) => (
+                <div 
+                  class="transcript-line-entry" 
+                  id={line.id}
+                  data-tags={line.tags.join(' ')}
+                >
+                  <div class="line-meta-row">
+                    <span class="line-timestamp type-mono-sm">{line.timestamp}</span>
+                    <span class="line-speaker type-mono-sm">SPEAKER // {line.speaker.toUpperCase()}</span>
+                    {line.isHook && (
+                      <span class="line-hook-indicator type-mono-sm">★ HOOK DETECTED</span>
+                    )}
+                  </div>
+                  
+                  <div class="line-text-wrap">
+                    <p class="line-spoken-text type-mono">{line.text}</p>
+                  </div>
+
+                  {line.hasFactCheck && (
+                    <div class="margin-note-check type-mono-sm">
+                      <strong>[CHECK]:</strong> {line.factCheckNote}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div class="transcript-paper-footer type-mono-sm">
+              <span>END OF EXCERPT // 3,420 WORDS TOTAL TRANSCRIBED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: The Editorial Content Desk -->
+        <div class="desk-column">
+          <div class="column-banner">
+            <span class="banner-title type-mono-sm">THE CONTENT DESK [FINISHED ASSETS]</span>
+            <span class="banner-hint type-mono-sm">SELECT TAB TO INSPECT</span>
+          </div>
+
+          <!-- Interactive Tabs Row -->
+          <div class="desk-tabs-bar" role="tablist" aria-label="Repurposed Content Formats">
+            {demoOutputs.map((output, idx) => (
+              <button 
+                class={`desk-tab-btn ${idx === 0 ? 'active' : ''}`}
+                role="tab"
+                aria-selected={idx === 0 ? "true" : "false"}
+                aria-controls={`panel-${output.id}`}
+                id={`tab-${output.id}`}
+                data-target={output.id}
+                data-highlights={output.highlightIds.join(',')}
+              >
+                <span class="tab-number">0{idx + 1}.</span>
+                <span class="tab-name">{output.label}</span>
+              </button>
+            ))}
+          </div>
+
+          <!-- Dynamic Output Panels -->
+          <div class="desk-panels-viewport">
+            <!-- PANEL 1: X THREAD -->
+            <div 
+              class="desk-panel active" 
+              id="panel-x-thread" 
+              role="tabpanel" 
+              aria-labelledby="tab-x-thread"
+            >
+              <div class="panel-meta-header">
+                <div class="panel-format-tag">
+                  <span class="tag-label type-mono-sm">FORMAT:</span>
+                  <span class="tag-val type-mono-sm">X (TWITTER) 3-PART THREAD</span>
+                </div>
+                <div class="stamp-badge">STRONGEST HOOK</div>
+              </div>
+
+              <div class="thread-posts-stream">
+                <!-- Post 1 (Hook) -->
+                <div class="thread-post-card card-raw">
+                  <div class="post-header-row">
+                    <span class="post-num type-mono-sm">POST 1/3 [THE HOOK]</span>
+                    <span class="stamp-badge">STRONGEST HOOK</span>
+                  </div>
+                  <div class="post-content type-reading">
+                    <p class="hook-line">
+                      Over <strong>9 CRORE</strong> Indians filed a tax return last year.
+                    </p>
+                    <p>We taught <strong>6 LAKHS</strong> of them.</p>
+                    <p>That's <strong>0.67%</strong>.</p>
+                    <p class="thread-tail">Here's what I did about it 🧵👇</p>
+                  </div>
+                  <div class="post-footer-tag type-mono-sm">
+                    <span>CHAR COUNT: 148 // OPTIMIZED FOR BOOKMARKS</span>
+                  </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="thread-post-card card-raw">
+                  <div class="post-header-row">
+                    <span class="post-num type-mono-sm">POST 2/3 [THE DIAGNOSIS]</span>
+                  </div>
+                  <div class="post-content type-reading">
+                    <p>Indians don't have an income problem.</p>
+                    <p>Indians have a <em>money guidance problem</em>.</p>
+                    <p class="quote-dialogue">"Should I buy a three crore flat?"</p>
+                    <p class="quote-dialogue">"Should I prepay my home loan or invest?"</p>
+                    <p>Google gives you 40 SEO affiliate blogs. It can't look at your bank account and tell you the truth.</p>
+                  </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="thread-post-card card-raw">
+                  <div class="post-header-row">
+                    <span class="post-num type-mono-sm">POST 3/3 [THE SOLUTION & CTA]</span>
+                    <span class="stamp-badge-green">CONVERSION ANCHOR</span>
+                  </div>
+                  <div class="post-content type-reading">
+                    <p>Teaching worked, but teaching can't scale to 9 crore families.</p>
+                    <p>Every Indian deserves someone watching their money full-time. Not an Excel sheet. Not an annual lecture.</p>
+                    <p><strong>Meet AICFO:</strong> your very own CFO in your pocket.</p>
+                    <p class="link-placeholder type-mono-sm">[Link in bio to test the private beta]</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="margin-note-check type-mono-sm">
+                <strong>[CHECK]:</strong> All figures verified against CBDT 2024-25 filing data. Link directs to custom creator beta domain.
+              </div>
+            </div>
+
+            <!-- PANEL 2: LINKEDIN -->
+            <div 
+              class="desk-panel" 
+              id="panel-linkedin" 
+              role="tabpanel" 
+              aria-labelledby="tab-linkedin"
+            >
+              <div class="panel-meta-header">
+                <div class="panel-format-tag">
+                  <span class="tag-label type-mono-sm">FORMAT:</span>
+                  <span class="tag-val type-mono-sm">LINKEDIN THOUGHT LEADERSHIP ESSAY</span>
+                </div>
+                <div class="stamp-badge-green">EXECUTIVE READ</div>
+              </div>
+
+              <div class="linkedin-post-card card-raw">
+                <h3 class="linkedin-title type-punch-md">The 0.67% Paradox in Indian Wealth</h3>
+                <div class="linkedin-body type-serif-body">
+                  <p>Last year, 9 crore Indians filed a tax return.</p>
+                  <p>Over the past 4 years, our team personally taught 600,000 of them how to manage personal cash flow.</p>
+                  <p>That number sounds impressive until you do the math: <em>that is barely 0.67% of taxpayers.</em></p>
+                  <p>Here is the uncomfortable truth most financial institutions avoid:</p>
+                  <p><strong>Indians do not have an income generation problem. We have a continuous guidance problem.</strong></p>
+                  <p>When someone receives their first major bonus or ESOP buyout, their anxiety spikes. They ask friends. They search Google. They get generic calculators built by banks trying to sell them ULIPs.</p>
+                  <p>What high-earning professionals actually need is an objective CFO in their corner 24/7.</p>
+                  <p>Teaching was phase 1. Autonomous software is phase 2.</p>
+                  <p>Today, we're introducing <strong>AICFO</strong>: the first private financial officer built for the modern Indian balance sheet.</p>
+                  <p class="linkedin-prompt"><em>What’s the one money decision keeping you up this quarter? Tell me below.</em></p>
+                </div>
+              </div>
+
+              <div class="margin-note-check type-mono-sm">
+                <strong>[CHECK]:</strong> Formatted with breathable paragraph breaks specifically optimized for the LinkedIn feed algorithm.
+              </div>
+            </div>
+
+            <!-- PANEL 3: NEWSLETTER -->
+            <div 
+              class="desk-panel" 
+              id="panel-newsletter" 
+              role="tabpanel" 
+              aria-labelledby="tab-newsletter"
+            >
+              <div class="panel-meta-header">
+                <div class="panel-format-tag">
+                  <span class="tag-label type-mono-sm">FORMAT:</span>
+                  <span class="tag-val type-mono-sm">WEEKLY NEWSLETTER DISPATCH [SUBSTACK / BEEHIIV]</span>
+                </div>
+                <div class="stamp-badge">3 MIN READ</div>
+              </div>
+
+              <div class="newsletter-card card-raw">
+                <div class="newsletter-header-ledger">
+                  <div class="ledger-field">
+                    <span class="field-k type-mono-sm">SUBJECT:</span>
+                    <span class="field-v type-mono">6 lakh out of 9 crore. That's 0.67%.</span>
+                  </div>
+                  <div class="ledger-field">
+                    <span class="field-k type-mono-sm">PREVIEW:</span>
+                    <span class="field-v type-mono">Why financial advice collapses the moment you get a raise.</span>
+                  </div>
+                </div>
+
+                <div class="newsletter-body type-serif-body">
+                  <p class="salutation">DEAR INVESTOR,</p>
+                  <p>Here is a statistic that keeps me awake at night:</p>
+                  <p>Last year, official filings crossed 90,000,000 returns. In our bootcamps, we’ve trained 600,000 individuals.</p>
+                  <p><strong>0.67%.</strong></p>
+                  <p>That means 99.33% of earning professionals in this country are operating with zero structured financial compass. They are winging it with advice from their uncle’s chartered accountant.</p>
+                  <div class="newsletter-callout card-sunken">
+                    <div class="callout-item">
+                      <strong>1. SALARY DOES NOT CURE ANXIETY:</strong> High earners suffer the exact same dread as entry-level grads because their lifestyle expands faster than their asset allocation.
+                    </div>
+                    <div class="callout-item">
+                      <strong>2. STATIC SPREADSHEETS ARE DEAD:</strong> Nobody logs into an Excel sheet on Sunday evening to categorize grocery receipts.
+                    </div>
+                    <div class="callout-item">
+                      <strong>3. REAL-TIME GUIDANCE WINS:</strong> The moment you ask "Can I afford this trip to Japan?", you need an immediate, balance-sheet-aware answer.
+                    </div>
+                  </div>
+                  <p>This is why we built AICFO. Read the full memo below.</p>
+                </div>
+              </div>
+
+              <div class="margin-note-check type-mono-sm">
+                <strong>[CHECK]:</strong> Subject line benchmarked: 54.2% predicted open-rate for personal finance subscribers.
+              </div>
+            </div>
+
+            <!-- PANEL 4: EMAIL LETTER -->
+            <div 
+              class="desk-panel" 
+              id="panel-email" 
+              role="tabpanel" 
+              aria-labelledby="tab-email"
+            >
+              <div class="panel-meta-header">
+                <div class="panel-format-tag">
+                  <span class="tag-label type-mono-sm">FORMAT:</span>
+                  <span class="tag-val type-mono-sm">1-ON-1 PERSONAL EMAIL LETTER</span>
+                </div>
+                <div class="stamp-badge">PRIVATE INTAKE</div>
+              </div>
+
+              <div class="email-letter-card card-raw">
+                <div class="email-envelope-top type-mono-sm">
+                  <span>TO: READERS LIST</span>
+                  <span>FROM: ANKIT [CREATOR DESK]</span>
+                  <span>SUBJECT: "Should I buy that 3-crore flat?"</span>
+                </div>
+
+                <div class="email-body type-serif-body">
+                  <p>Hey reader,</p>
+                  <p>A follower DM'd me that exact question yesterday afternoon.</p>
+                  <p>He makes ₹45L a year. His family is pushing him to buy in Gurgaon. His EMI would be ₹2.1 lakhs a month.</p>
+                  <p class="highlight-quote">He asked: <em>"Will this ruin me?"</em></p>
+                  <p>Google can't answer that for him. His bank RM will tell him yes because of the commission. His parents will tell him yes because 'real estate never goes down.'</p>
+                  <p>None of them have seen his net liquid runway, his health insurance coverage, or his career burn rate.</p>
+                  <p>This is why I built AICFO.</p>
+                  <p>It’s not a bot. It’s an executive financial partner in your phone that actually knows your balance sheet.</p>
+                  <p>I’m opening 500 spots for our private beta this week. If you’re tired of guessing with your life savings, reply to this email.</p>
+                  <p class="email-signoff">Best,<br />Ankit</p>
+                </div>
+              </div>
+
+              <div class="margin-note-check type-mono-sm">
+                <strong>[CHECK]:</strong> Plain-text email structure maximizes deliverability straight to Primary inbox tab (avoids Promotions).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Client-side Interactive Script -->
+<script>
+  function initLiveDemo() {
+    const tabs = document.querySelectorAll('.desk-tab-btn');
+    const panels = document.querySelectorAll('.desk-panel');
+    const allTranscriptLines = document.querySelectorAll('.transcript-line-entry');
+
+    if (!tabs.length) return;
+
+    function activateTab(tab) {
+      const targetId = tab.getAttribute('data-target');
+      const highlightIdsStr = tab.getAttribute('data-highlights') || '';
+      const highlightIds = highlightIdsStr.split(',').filter(Boolean);
+
+      // 1. Update Tabs
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      // 2. Update Output Panels
+      panels.forEach(p => {
+        p.classList.remove('active');
+      });
+      const activePanel = document.getElementById(`panel-${targetId}`);
+      if (activePanel) {
+        activePanel.classList.add('active');
+      }
+
+      // 3. Highlight Matching Spoken Lines on Left Transcript
+      allTranscriptLines.forEach(lineEl => {
+        const lineId = lineEl.id;
+        const textWrap = lineEl.querySelector('.line-spoken-text');
+        
+        if (highlightIds.includes(lineId)) {
+          lineEl.classList.add('highlight-selected');
+          if (textWrap) textWrap.classList.add('hl-active');
+        } else {
+          lineEl.classList.remove('highlight-selected');
+          if (textWrap) textWrap.classList.remove('hl-active');
+        }
+      });
+    }
+
+    // Set Initial Active State
+    const initialTab = document.querySelector('.desk-tab-btn.active') || tabs[0];
+    if (initialTab) {
+      activateTab(initialTab);
+    }
+
+    // Click Listeners
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        activateTab(tab);
+      });
+    });
+  }
+
+  // Run on page load and Astro view transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLiveDemo);
+  } else {
+    initLiveDemo();
+  }
+</script>
+
+<style>
+  .demo-section {
+    padding-top: var(--sp-6);
+    padding-bottom: var(--sp-7);
+    background-color: var(--paper-base);
+    border-bottom: var(--border-thick);
+  }
+
+  .demo-section-header {
+    margin-bottom: var(--sp-5);
+  }
+
+  .header-stamp-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-2);
+  }
+
+  .header-edition-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+  }
+
+  .demo-main-title {
+    margin-bottom: var(--sp-2);
+  }
+
+  .demo-subhead {
+    max-width: 720px;
+    color: var(--ink-secondary);
+  }
+
+  /* Workbench Frame */
+  .workbench-frame {
+    background-color: var(--paper-sheet);
+    border: var(--border-heavy);
+    padding: 0;
+  }
+
+  .workbench-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--ink-black);
+    color: var(--paper-sheet);
+    padding: 8px 16px;
+    font-family: var(--font-mono);
+  }
+
+  .status-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-vermilion);
+    display: inline-block;
+    animation: blinkPulse 2s infinite;
+  }
+
+  @keyframes blinkPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .workbench-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 1024px) {
+    .workbench-grid {
+      grid-template-columns: 460px 1fr;
+    }
+  }
+
+  /* Column Common */
+  .column-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--paper-sunken);
+    border-bottom: var(--border-thick);
+    padding: 8px 16px;
+  }
+
+  .banner-title {
+    font-weight: 700;
+    color: var(--ink-black);
+  }
+
+  .banner-hint {
+    color: var(--accent-vermilion);
+    font-weight: 700;
+  }
+
+  /* Left Column: Transcript */
+  .transcript-column {
+    border-bottom: var(--border-thick);
+    background-color: var(--paper-base);
+  }
+
+  @media (min-width: 1024px) {
+    .transcript-column {
+      border-right: var(--border-thick);
+      border-bottom: none;
+    }
+  }
+
+  .transcript-paper-sheet {
+    padding: var(--sp-4);
+    height: 100%;
+    max-height: 720px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .transcript-meta-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    border-bottom: 1px dashed var(--ink-faint);
+    padding-bottom: 6px;
+  }
+
+  .transcript-lines-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .transcript-line-entry {
+    background-color: var(--paper-sheet);
+    border: 1px solid var(--paper-dark);
+    padding: 12px;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+
+  .transcript-line-entry.highlight-selected {
+    border: 3px solid var(--ink-black);
+    transform: translateX(4px);
+    background-color: #FFFDF8;
+  }
+
+  .line-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-family: var(--font-mono);
+  }
+
+  .line-timestamp {
+    color: var(--accent-vermilion);
+    font-weight: 700;
+  }
+
+  .line-speaker {
+    color: var(--ink-muted);
+  }
+
+  .line-hook-indicator {
+    color: var(--accent-vermilion);
+    font-weight: 700;
+    margin-left: auto;
+  }
+
+  .line-spoken-text {
+    color: var(--ink-black);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    padding: 2px 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  .transcript-paper-footer {
+    margin-top: auto;
+    border-top: 1px dashed var(--ink-faint);
+    padding-top: 8px;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+
+  /* Right Column: Desk */
+  .desk-column {
+    background-color: var(--paper-sheet);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Tabs Bar */
+  .desk-tabs-bar {
+    display: flex;
+    overflow-x: auto;
+    border-bottom: var(--border-thick);
+    background-color: var(--paper-sunken);
+  }
+
+  .desk-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 18px;
+    background-color: transparent;
+    border: none;
+    border-right: var(--border-thick);
+    font-family: var(--font-headline-punch);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ink-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .desk-tab-btn:hover {
+    background-color: var(--paper-base);
+    color: var(--ink-black);
+  }
+
+  .desk-tab-btn.active {
+    background-color: var(--ink-black);
+    color: var(--paper-sheet);
+  }
+
+  .tab-number {
+    color: var(--accent-vermilion);
+  }
+
+  .desk-tab-btn.active .tab-number {
+    color: var(--accent-highlighter);
+  }
+
+  /* Panels Viewport */
+  .desk-panels-viewport {
+    padding: var(--sp-4);
+    flex: 1;
+    overflow-y: auto;
+    max-height: 670px;
+  }
+
+  .desk-panel {
+    display: none;
+    animation: fadeInDesk 0.25s ease forwards;
+  }
+
+  .desk-panel.active {
+    display: block;
+  }
+
+  @keyframes fadeInDesk {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel-meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--ink-black);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .panel-format-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tag-label {
+    color: var(--ink-muted);
+  }
+
+  .tag-val {
+    font-weight: 700;
+  }
+
+  /* X Thread Styles */
+  .thread-posts-stream {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+
+  .thread-post-card {
+    background-color: var(--paper-base);
+  }
+
+  .post-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--ink-faint);
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+
+  .post-num {
+    font-weight: 700;
+    color: var(--ink-secondary);
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--ink-black);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hook-line {
+    font-size: 1.15rem;
+    font-family: var(--font-editorial-serif);
+  }
+
+  .quote-dialogue {
+    font-style: italic;
+    color: var(--ink-secondary);
+    border-left: 2px solid var(--ink-black);
+    padding-left: 8px;
+  }
+
+  .thread-tail {
+    font-weight: 600;
+    color: var(--accent-vermilion);
+  }
+
+  .post-footer-tag {
+    border-top: 1px dashed var(--ink-faint);
+    margin-top: 8px;
+    padding-top: 4px;
+    color: var(--ink-faint);
+    font-size: 0.68rem;
+  }
+
+  /* LinkedIn Styles */
+  .linkedin-post-card {
+    background-color: var(--paper-base);
+  }
+
+  .linkedin-title {
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--ink-black);
+    padding-bottom: 8px;
+  }
+
+  .linkedin-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1.05rem;
+  }
+
+  .linkedin-prompt {
+    margin-top: 8px;
+    font-family: var(--font-reading);
+    color: var(--ink-secondary);
+  }
+
+  /* Newsletter Styles */
+  .newsletter-card {
+    background-color: var(--paper-base);
+  }
+
+  .newsletter-header-ledger {
+    background-color: var(--paper-sunken);
+    border: var(--border-thin);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ledger-field {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+  }
+
+  .field-k {
+    font-weight: 700;
+    color: var(--accent-vermilion);
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .field-v {
+    color: var(--ink-black);
+    font-weight: 700;
+  }
+
+  .newsletter-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .salutation {
+    font-family: var(--font-headline-punch);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .newsletter-callout {
+    padding: 14px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Email Letter Styles */
+  .email-letter-card {
+    background-color: var(--paper-base);
+  }
+
+  .email-envelope-top {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-bottom: 2px dashed var(--ink-black);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    color: var(--ink-muted);
+  }
+
+  .email-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .highlight-quote {
+    background-color: var(--accent-highlighter-faint);
+    padding: 4px 8px;
+    border-left: 3px solid var(--accent-vermilion);
+  }
+
+  .email-signoff {
+    margin-top: 12px;
+    font-family: var(--font-editorial-serif);
+    font-size: 1.15rem;
+  }
+</style>
