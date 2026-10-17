@@ -2,146 +2,77 @@
 import { siteConfig } from '../data/siteData.js';
 ---
 
-<header class="site-header">
-  <div class="container-zine header-inner">
-    <!-- Brand / Editorial Masthead -->
-    <div class="masthead-left">
-      <a href="#" class="brand-link" aria-label="Steadure Home">
-        <span class="brand-logo-stamp">STEADURE</span>
-        <span class="brand-edition">VOL. 01 // ED. 2026</span>
-      </a>
-      <span class="brand-tagline">“{siteConfig.tagline}”</span>
-    </div>
+<header class="site-header" role="banner">
+  <div class="container header-inner">
+    <a href="#" class="brand-wordmark" aria-label="Steadure Home">
+      <span class="wordmark-text">{siteConfig.brand.name}</span>
+      <span class="wordmark-dot">.</span>
+    </a>
 
-    <!-- Editorial Navigation -->
-    <nav class="masthead-nav" aria-label="Main Navigation">
-      <ul class="nav-list">
-        <li><a href="#hero-split" class="nav-link"><span class="nav-num">01.</span> THE SPLIT</a></li>
-        <li><a href="#problem" class="nav-link"><span class="nav-num">02.</span> THE PROBLEM</a></li>
-        <li><a href="#live-demo" class="nav-link"><span class="nav-num">03.</span> LIVE DEMO</a></li>
-        <li><a href="#how-it-works" class="nav-link"><span class="nav-num">04.</span> WORKFLOW</a></li>
-        <li><a href="#the-pack" class="nav-link"><span class="nav-num">05.</span> THE PACK</a></li>
-        <li><a href="#samples" class="nav-link"><span class="nav-num">06.</span> SAMPLES</a></li>
-      </ul>
-    </nav>
-
-    <!-- Header CTA -->
-    <div class="masthead-cta">
-      <a href="#contact" class="btn-stamp header-dispatch-btn">
-        <span class="stamp-dot"></span> DISPATCH A VIDEO
-      </a>
-    </div>
+    <a href="#contact" class="btn-primary nav-btn">
+      Send a video
+    </a>
   </div>
 </header>
 
 <style>
   .site-header {
-    width: 100%;
-    border-bottom: var(--border-thick);
-    background-color: var(--paper-base);
     position: sticky;
     top: 0;
     z-index: 100;
+    background-color: rgba(244, 239, 230, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--ink-rule);
+    transition: background-color 0.2s ease;
   }
 
   .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    gap: var(--sp-3);
+    height: 72px;
   }
 
-  .masthead-left {
-    display: flex;
+  .brand-wordmark {
+    text-decoration: none;
+    display: inline-flex;
     align-items: baseline;
-    gap: var(--sp-3);
-    flex-wrap: wrap;
+    color: var(--ink-primary);
   }
 
-  .brand-link {
-    display: flex;
-    align-items: baseline;
-    gap: var(--sp-2);
-  }
-
-  .brand-logo-stamp {
-    font-family: var(--font-headline-punch);
-    font-size: 1.35rem;
-    letter-spacing: 1px;
-    background-color: var(--ink-black);
-    color: var(--paper-sheet);
-    padding: 2px 8px;
-    display: inline-block;
-  }
-
-  .brand-edition {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--ink-muted);
-    letter-spacing: 0.5px;
-  }
-
-  .brand-tagline {
-    font-family: var(--font-editorial-serif);
-    font-style: italic;
-    font-size: 0.95rem;
-    color: var(--ink-secondary);
-    display: none;
-  }
-
-  @media (min-width: 900px) {
-    .brand-tagline {
-      display: inline-block;
-    }
-  }
-
-  .masthead-nav {
-    display: none;
-  }
-
-  @media (min-width: 1024px) {
-    .masthead-nav {
-      display: block;
-    }
-  }
-
-  .nav-list {
-    display: flex;
-    list-style: none;
-    gap: var(--sp-4);
-  }
-
-  .nav-link {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
+  .wordmark-text {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
     font-weight: 700;
-    letter-spacing: 0.5px;
-    color: var(--ink-secondary);
-    position: relative;
-    padding-bottom: 2px;
+    letter-spacing: -0.03em;
   }
 
-  .nav-num {
-    color: var(--accent-vermilion);
+  .wordmark-dot {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    color: var(--vermilion);
+    margin-left: 1px;
   }
 
-  .nav-link:hover {
-    color: var(--ink-black);
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  .nav-btn {
+    padding: 9px 20px;
+    font-size: 0.88rem;
   }
 
-  .stamp-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--accent-vermilion);
-    display: inline-block;
-  }
-
-  .header-dispatch-btn {
-    font-size: 0.75rem;
-    padding: 6px 14px;
+  @media (max-width: 480px) {
+    .header-inner {
+      height: 58px;
+    }
+    .wordmark-text {
+      font-size: 1.4rem;
+    }
+    .wordmark-dot {
+      font-size: 1.4rem;
+    }
+    .nav-btn {
+      padding: 6px 12px;
+      font-size: 0.78rem;
+    }
   }
 </style>

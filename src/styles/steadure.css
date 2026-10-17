@@ -1,0 +1,311 @@
+/* ==========================================================================
+   STEADURE DESIGN SYSTEM
+   Warm Paper, Ink Black, Vermilion Riso Accent, Subtle Highlighter, Washi Tape
+   Aesthetic: Art-Led, Minimal, Two-Colour Riso Print Look
+   ========================================================================== */
+
+/* --- Font Declarations with local woff2 fallbacks --- */
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/newsreader-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('/fonts/courier-prime-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('/fonts/courier-prime-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Caveat';
+  src: url('/fonts/caveat-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Design Tokens --- */
+:root {
+  --paper-bg: #F4EFE6;
+  --paper-card: #FAF6EE;
+  --paper-aged: #EDE3D0;
+  --paper-desk: #ECE3D2;
+  --paper-receipt: #FCF9F2;
+
+  --ink-primary: #1B1A17;
+  --ink-secondary: #4A463E;
+  --ink-tertiary: #545045;
+  --ink-faint: #6E685C;
+  --ink-rule: rgba(27, 26, 23, 0.12);
+  --ink-rule-strong: rgba(27, 26, 23, 0.28);
+
+  --vermilion: #C2260F;
+  --vermilion-tint: rgba(194, 38, 15, 0.08);
+  --vermilion-border: rgba(194, 38, 15, 0.35);
+
+  --highlighter: #F2D95C;
+  --highlighter-glow: rgba(242, 217, 92, 0.45);
+
+  --tape: rgba(238, 230, 206, 0.85);
+  --tape-edge: rgba(195, 183, 150, 0.55);
+
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-body: 'Newsreader', Garamond, Georgia, serif;
+  --font-mono: 'Courier Prime', monospace;
+  --font-hand: 'Caveat', cursive;
+  --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --shadow-paper: 0 4px 14px rgba(27, 26, 23, 0.08), 0 1px 3px rgba(27, 26, 23, 0.05);
+  --shadow-lift: 0 16px 32px rgba(27, 26, 23, 0.12), 0 3px 8px rgba(27, 26, 23, 0.06);
+
+  --container-max: 1200px;
+}
+
+/* --- Base & Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--paper-bg);
+  color: var(--ink-primary);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--paper-bg);
+  background-image: 
+    radial-gradient(circle at 100% 0%, rgba(217, 56, 30, 0.02) 0%, transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(242, 217, 92, 0.03) 0%, transparent 40%);
+  color: var(--ink-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Paper Grain Texture Overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background-image: url('/assets/paper-noise.png');
+  background-repeat: repeat;
+  opacity: 0.08;
+  z-index: 9999;
+}
+
+/* --- Typography --- */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--ink-primary);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(1.95rem, 5.5vw, 4.4rem);
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+}
+
+p {
+  font-size: 1.125rem;
+  color: var(--ink-secondary);
+}
+
+.typewriter-label {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-tertiary);
+}
+
+/* Hand-drawn Underline */
+.ink-underline {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ink-underline::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  bottom: -4px;
+  width: 104%;
+  height: 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M2 9 Q 25 3, 50 8 T 98 6' stroke='%23D9381E' stroke-width='3.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* Yellow Highlighter Effect */
+mark.highlighter, .highlight-phrase {
+  background: linear-gradient(104deg, rgba(242, 217, 92, 0) 0.9%, rgba(242, 217, 92, 0.75) 2.4%, rgba(242, 217, 92, 0.65) 5.8%, rgba(242, 217, 92, 0.1) 98%);
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
+  color: inherit;
+}
+
+/* Red Stamp Accent (Rare & Meaningful - Max 3 on page) */
+.stamp-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vermilion);
+  border: 2px dashed var(--vermilion);
+  padding: 4px 10px;
+  border-radius: 3px;
+  transform: rotate(-2deg);
+  background: var(--vermilion-tint);
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(217, 56, 30, 0.15);
+}
+
+/* Washi Tape Strip */
+.tape-strip {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0.8deg);
+  width: 90px;
+  height: 24px;
+  background-color: var(--tape);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  border-left: 1px dashed var(--tape-edge);
+  border-right: 1px dashed var(--tape-edge);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Red Pen Check Note */
+.red-pen-note {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: var(--vermilion);
+  line-height: 1.25;
+  background: rgba(217, 56, 30, 0.05);
+  border-left: 2px solid var(--vermilion);
+  padding: 6px 10px;
+  margin: 12px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Container */
+.container {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 2.5rem);
+  padding-right: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* --- Buttons & Links --- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: var(--paper-bg);
+  background-color: var(--ink-primary);
+  border: 2px solid var(--ink-primary);
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink-primary);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink-primary);
+  background-color: #272420;
+}
+
+.btn-primary:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--ink-primary);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  text-decoration: none;
+  padding: 12px 20px;
+  border-bottom: 2px solid var(--ink-primary);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-secondary:hover {
+  color: var(--vermilion);
+  border-color: var(--vermilion);
+}
+
+/* --- Responsive Helpers --- */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

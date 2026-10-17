@@ -1,0 +1,321 @@
+---
+import { contactData, siteConfig } from '../data/siteData.js';
+---
+
+<section class="contact-section" id="contact" aria-labelledby="contact-heading">
+  <div class="container contact-container">
+    
+    <div class="contact-header">
+      <h2 id="contact-heading" class="contact-title">
+        {contactData.heading}
+      </h2>
+      <p class="contact-subhead">
+        {contactData.subhead}
+      </p>
+    </div>
+
+    <div class="contact-layout">
+      
+      <!-- Left: 3-Field Intake Form -->
+      <div class="contact-form-card">
+        <div class="tape-strip" aria-hidden="true"></div>
+
+        <form class="video-intake-form" id="videoForm">
+          <div class="form-group">
+            <label for="visitorName" class="form-label typewriter-label">Your name</label>
+            <input 
+              type="text" 
+              id="visitorName" 
+              name="name" 
+              class="form-input" 
+              placeholder="e.g. Alex" 
+              required 
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="visitorEmail" class="form-label typewriter-label">Your email</label>
+            <input 
+              type="email" 
+              id="visitorEmail" 
+              name="email" 
+              class="form-input" 
+              placeholder="alex@example.com" 
+              required 
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="videoLink" class="form-label typewriter-label">YouTube video link</label>
+            <input 
+              type="url" 
+              id="videoLink" 
+              name="videoLink" 
+              class="form-input" 
+              placeholder="https://youtube.com/watch?v=..." 
+              required 
+            />
+          </div>
+
+          <button type="submit" class="btn-primary form-submit-btn">
+            {contactData.fields.submit}
+          </button>
+        </form>
+
+        <div class="contact-direct-row">
+          <span>Or write to:</span>
+          <a href={`mailto:${contactData.email}`} class="direct-email-link">
+            {contactData.email}
+          </a>
+          <button class="copy-email-btn" id="copyEmailBtn" aria-label="Copy email address">
+            Copy
+          </button>
+        </div>
+
+        <div class="social-placeholders">
+          <a href={siteConfig.brand.xUrl} class="social-link" target="_blank" rel="noopener noreferrer">X</a>
+          <span class="social-sep">·</span>
+          <a href={siteConfig.brand.linkedInUrl} class="social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- Right: Hand-drawn Mailbox / Paper Plane Riso Illustration -->
+      <div class="contact-art-card" aria-hidden="true">
+        <svg viewBox="0 0 340 340" class="contact-art-svg">
+          <!-- Halftone Pattern -->
+          <pattern id="contact-halftone" width="6" height="6" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1" fill="#D9381E" fill-opacity="0.35" />
+          </pattern>
+
+          <!-- Postal Mailbox with Paper Plane flying out -->
+          <!-- Mailbox Shadow -->
+          <ellipse cx="170" cy="300" rx="90" ry="14" fill="#1B1A17" fill-opacity="0.08" />
+
+          <!-- Mailbox Post -->
+          <rect x="158" y="190" width="24" height="110" fill="#FAF6EE" stroke="#1B1A17" stroke-width="2.5" />
+
+          <!-- Riso Red Misregistered Mailbox Body -->
+          <path d="M 94 94 C 94 48, 244 48, 244 94 L 244 194 L 94 194 Z" fill="#D9381E" fill-opacity="0.2" transform="translate(3, 3)" />
+          
+          <!-- Black Linework Mailbox Body -->
+          <path d="M 90 90 C 90 45, 240 45, 240 90 L 240 190 L 90 190 Z" fill="#FAF6EE" stroke="#1B1A17" stroke-width="2.8" />
+
+          <!-- Mail Slot -->
+          <rect x="115" y="115" width="100" height="12" rx="3" fill="#1B1A17" />
+          <!-- Mail Slot Red Flap -->
+          <path d="M 112 110 L 218 110 L 210 128 L 120 128 Z" fill="#D9381E" stroke="#1B1A17" stroke-width="1.8" />
+
+          <!-- Mailbox Flag (Up) -->
+          <path d="M 240 130 L 270 130 L 270 95 L 295 95 L 295 120 L 270 120" stroke="#1B1A17" stroke-width="2.2" fill="#D9381E" />
+
+          <!-- Paper Plane soaring out into the air -->
+          <g transform="translate(140, 20) rotate(-18)">
+            <!-- Red shadow plane -->
+            <polygon points="0,40 70,0 25,60" fill="#D9381E" fill-opacity="0.4" transform="translate(2, 2)" />
+            <!-- Main paper plane -->
+            <polygon points="0,40 70,0 25,60" fill="#FAF6EE" stroke="#1B1A17" stroke-width="2.2" stroke-linejoin="round" />
+            <polygon points="25,60 70,0 45,60" fill="#EDE3D0" stroke="#1B1A17" stroke-width="2" stroke-linejoin="round" />
+          </g>
+
+          <!-- Dashed flight curve -->
+          <path d="M 165 110 Q 140 60 190 40" stroke="#1B1A17" stroke-width="1.8" stroke-dasharray="4 4" fill="none" opacity="0.6" />
+        </svg>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: clamp(3.5rem, 7vw, 6rem) 0;
+    background-color: var(--paper-bg);
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .contact-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-subhead {
+    font-size: 1.15rem;
+    color: var(--ink-secondary);
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .contact-form-card {
+    background-color: var(--paper-card);
+    border: 2px solid var(--ink-primary);
+    border-radius: 6px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    box-shadow: 6px 6px 0 var(--ink-primary);
+    position: relative;
+  }
+
+  .video-intake-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-label {
+    font-size: 0.8rem;
+  }
+
+  .form-input {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    background-color: var(--paper-bg);
+    border: 1.5px solid var(--ink-primary);
+    padding: 10px 14px;
+    border-radius: 4px;
+    color: var(--ink-primary);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--vermilion);
+    box-shadow: 0 0 0 3px var(--vermilion-tint);
+  }
+
+  .form-submit-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .contact-direct-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-secondary);
+    padding-top: 1rem;
+    border-top: 1px dashed var(--ink-rule);
+    flex-wrap: wrap;
+  }
+
+  .direct-email-link {
+    color: var(--vermilion);
+    text-decoration: underline;
+    font-weight: 700;
+  }
+
+  .copy-email-btn {
+    background-color: var(--paper-bg);
+    border: 1px solid var(--ink-primary);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    cursor: pointer;
+  }
+
+  .social-placeholders {
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+
+  .social-link {
+    color: var(--ink-tertiary);
+    text-decoration: none;
+  }
+
+  .social-link:hover {
+    color: var(--ink-primary);
+    text-decoration: underline;
+  }
+
+  .social-sep {
+    margin: 0 6px;
+    color: var(--ink-faint);
+  }
+
+  .contact-art-card {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contact-art-svg {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+    }
+    .contact-art-card {
+      order: -1;
+      max-width: 220px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<script>
+  function initContactForm() {
+    const form = document.getElementById('videoForm') ;
+    const copyBtn = document.getElementById('copyEmailBtn');
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('visitorName') ;
+        const emailInput = document.getElementById('visitorEmail') ;
+        const videoInput = document.getElementById('videoLink') ;
+
+        const name = nameInput ? nameInput.value : '';
+        const email = emailInput ? emailInput.value : '';
+        const video = videoInput ? videoInput.value : '';
+
+        const subject = encodeURIComponent(`New video from ${name}`);
+        const body = encodeURIComponent(
+          `Hi Steadure team,\n\nName: ${name}\nEmail: ${email}\nVideo link: ${video}\n\nLooking forward to the written pack!`
+        );
+
+        window.location.href = `mailto:contact@steadure.com?subject=${subject}&body=${body}`;
+      });
+    }
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText('contact@steadure.com').then(() => {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy';
+          }, 2000);
+        });
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContactForm);
+  } else {
+    initContactForm();
+  }
+</script>

@@ -1,480 +1,361 @@
 ---
-import { siteConfig, sampleTranscript } from '../data/siteData.js';
+import { heroData } from '../data/siteData.js';
 ---
 
-<section id="hero-split" class="hero-section">
-  <div class="container-zine">
-    <!-- Top Editorial Metadata Stamp -->
-    <div class="hero-ledger-bar">
-      <div class="ledger-item">
-        <span class="ledger-label">DISPATCH:</span>
-        <span class="ledger-val">EDITORIAL INTELLIGENCE FOR FINANCE EDUCATORS</span>
-      </div>
-      <div class="ledger-item">
-        <span class="ledger-label">THE MANDATE:</span>
-        <span class="ledger-val">ONE SPOKEN VIDEO → SIX PRINTED ASSETS</span>
-      </div>
-      <div class="ledger-item">
-        <span class="stamp-badge">100% HUMAN EDITORIAL</span>
-      </div>
-    </div>
-
-    <!-- Main Headline & Subtitle -->
-    <div class="hero-copy-block">
-      <h1 class="hero-headline type-punch-xl">
-        BUILD TO KEEP YOU <span class="moving-word-wrapper">
-          <span class="moving-text">MOVING.</span>
-          <svg class="moving-ink-underline" viewBox="0 0 280 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 12C50 4 150 14 276 6C200 16 90 12 12 15" stroke="var(--accent-vermilion)" stroke-width="4.5" stroke-linecap="square"/>
-          </svg>
-        </span>
+<section class="hero-section" id="hero" aria-labelledby="hero-heading">
+  <div class="container hero-container">
+    
+    <!-- Hero Copy: Minimal, < 25 words, H1 6 words max -->
+    <div class="hero-copy">
+      <h1 id="hero-heading" class="hero-title">
+        build to keep you <span class="ink-underline">moving.</span>
       </h1>
-
-      <p class="hero-subline type-serif-body">
-        We turn one finance video into posts, threads, newsletters and emails, so your ideas reach people who read.
+      <p class="hero-subhead">
+        {heroData.subhead}
       </p>
-
-      <!-- Action Buttons -->
       <div class="hero-actions">
-        <a href="#live-demo" class="btn-primary hero-btn-cta">
-          SEE IT WORK <span class="arrow-down">↓</span>
+        <a href="#samples" class="btn-primary">
+          {heroData.ctaPrimary}
         </a>
-        <a href="#contact" class="link-ghost hero-link-secondary">
-          WORK WITH US →
+        <a href="#contact" class="btn-secondary">
+          {heroData.ctaSecondary} &rarr;
         </a>
       </div>
     </div>
 
-    <!-- The Visual "Split": One Video Roll Spreading into Many Pages -->
-    <div class="split-workbench">
-      <div class="split-header-tag">
-        <span class="split-dot"></span> THE REPURPOSING SPLIT // LIVE VISUALIZATION
-      </div>
+    <!-- Hero Illustration: Original Two-Colour Riso Linocut SVG (≥60% visual presence) -->
+    <!-- ONE VIDEO IN, MANY PAGES OUT: Film reel/play frame -> press/scissors -> 4 paper pieces on desk with pen, coffee ring, clips -->
+    <div class="hero-art-wrapper">
+      <svg class="hero-illustration" viewBox="0 0 860 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hero-art-title">
+        <title id="hero-art-title">One finance video unspooling into threads, posts, a newsletter, and an email</title>
+        <defs>
+          <!-- Subtle Halftone Pattern -->
+          <pattern id="riso-halftone" width="8" height="8" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1.1" fill="#D9381E" fill-opacity="0.32" />
+          </pattern>
+          <pattern id="ink-dots" width="10" height="10" patternUnits="userSpaceOnUse">
+            <circle cx="3" cy="3" r="1" fill="#1B1A17" fill-opacity="0.18" />
+          </pattern>
+          <!-- Soft Paper Drop Filter -->
+          <filter id="paper-drop" x="-6%" y="-6%" width="112%" height="116%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="2" dy="5" stdDeviation="4" flood-color="#1B1A17" flood-opacity="0.1" />
+          </filter>
+        </defs>
 
-      <div class="split-canvas">
-        <!-- LEFT: Spoken Video Transcript Paper Strip (Receipt / Ticker Roll) -->
-        <div class="transcript-paper-roll">
-          <div class="tape-strip tape-top-center"></div>
-          <div class="paper-roll-header">
-            <div class="roll-red-stamp">RAW TRANSCRIPT ROLL</div>
-            <div class="roll-meta">SRC: YOUTUBE // 18:42 AUDIO</div>
-          </div>
+        <!-- Desk Surface Line & Coffee Ring -->
+        <g class="art-desk-accents">
+          <!-- Coffee Ring Stain -->
+          <circle cx="780" cy="110" r="42" stroke="#B87B4C" stroke-width="2.5" stroke-dasharray="8 3 14 4" stroke-opacity="0.25" fill="#FAF6EE" fill-opacity="0.08" />
+          <circle cx="778" cy="108" r="38" stroke="#B87B4C" stroke-width="1.2" stroke-opacity="0.18" fill="none" />
+          
+          <!-- Desk baseline -->
+          <path d="M 30 430 L 830 430" stroke="#1B1A17" stroke-width="1.5" stroke-dasharray="4 4" stroke-opacity="0.3" />
+        </g>
 
-          <div class="ticker-scroll-window">
-            <div class="ticker-content" id="heroTickerContent">
-              {sampleTranscript.lines.map((line) => (
-                <div class="ticker-line">
-                  <span class="ticker-time">{line.timestamp}</span>
-                  <p class="ticker-text">{line.text}</p>
-                </div>
-              ))}
-              <!-- Duplicate for continuous infinite scroll feel -->
-              {sampleTranscript.lines.map((line) => (
-                <div class="ticker-line ticker-clone">
-                  <span class="ticker-time">{line.timestamp}</span>
-                  <p class="ticker-text">{line.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+        <!-- 1. VIDEO REEL / CASSETTE (Left: Video In) -->
+        <g class="art-video-in" transform="translate(40, 90)">
+          <!-- Riso Red Misregistered Shadow -->
+          <rect x="2" y="4" width="168" height="190" rx="8" fill="#D9381E" fill-opacity="0.18" transform="rotate(-1.5 84 95)" />
+          
+          <!-- Black Ink Main Cassette -->
+          <rect x="0" y="0" width="168" height="190" rx="8" fill="#FAF6EE" stroke="#1B1A17" stroke-width="3" filter="url(#paper-drop)" />
+          
+          <!-- Cassette Window -->
+          <rect x="18" y="24" width="132" height="74" rx="4" fill="#EDE3D0" stroke="#1B1A17" stroke-width="2" />
+          
+          <!-- Film Spools inside window -->
+          <circle cx="50" cy="61" r="20" stroke="#1B1A17" stroke-width="2.5" fill="#FAF6EE" />
+          <circle cx="50" cy="61" r="7" fill="#1B1A17" />
+          <circle cx="118" cy="61" r="20" stroke="#1B1A17" stroke-width="2.5" fill="#FAF6EE" />
+          <circle cx="118" cy="61" r="7" fill="#1B1A17" />
+          
+          <!-- Connecting film loop inside window -->
+          <path d="M 50 41 Q 84 48 118 41" stroke="#1B1A17" stroke-width="2.2" />
 
-          <div class="tear-edge-divider">
-            <span class="tear-label">--- SEPARATION POINT // EDITORIAL SPLIT ---</span>
-          </div>
-        </div>
+          <!-- Large Play Triangle Symbol (Riso Red with slight offset) -->
+          <polygon points="76,128 76,164 106,146" fill="#D9381E" stroke="#1B1A17" stroke-width="2.5" stroke-linejoin="round" />
 
-        <!-- RIGHT: The Split Pieces Flying into 4 Physical Output Cards -->
-        <div class="split-outputs-deck">
-          <!-- Card 1: X Thread -->
-          <div class="split-card split-card-1">
-            <div class="tape-strip tape-corner-left"></div>
-            <div class="card-tag-row">
-              <span class="output-type-stamp">01 // X THREAD</span>
-              <span class="stamp-badge">STRONGEST HOOK</span>
-            </div>
-            <div class="card-sample-snippet">
-              <span class="line-lead">1/3</span> “Over 9 CRORE Indians filed taxes last year. We taught 6 LAKHS of them. That's 0.67%...”
-            </div>
-            <div class="card-footer-meta">
-              <span>HOOK EXPANDED</span>
-              <span class="meta-check">✓ FACT-CHECKED</span>
-            </div>
-          </div>
+          <!-- Cassette Label -->
+          <text x="84" y="180" font-family="'Courier Prime', monospace" font-size="10" font-weight="700" fill="#1B1A17" text-anchor="middle" letter-spacing="1">YOUTUBE VIDEO</text>
+        </g>
 
-          <!-- Card 2: LinkedIn Post -->
-          <div class="split-card split-card-2">
-            <div class="card-tag-row">
-              <span class="output-type-stamp">02 // LINKEDIN STORY</span>
-              <span class="stamp-badge-green">EXECUTIVE READ</span>
-            </div>
-            <div class="card-sample-snippet">
-              “The 0.67% Paradox in Indian Wealth. Indians do not have an income problem. We have a continuous guidance problem...”
-            </div>
-            <div class="card-footer-meta">
-              <span>FOUNDER VOICE</span>
-              <span class="meta-check">✓ LONG-FORM</span>
-            </div>
-          </div>
+        <!-- 2. UNSPOOLING FILM RIBBON (Moving from Left to Center) -->
+        <g class="art-film-ribbon">
+          <!-- Misregistered Red Trace -->
+          <path class="ribbon-red-track" d="M 208 190 C 260 190, 290 240, 360 238 S 430 195, 480 205" stroke="#D9381E" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.4" />
+          
+          <!-- Main Film Strip (Black with Sprocket Holes) -->
+          <path class="ribbon-black-track" d="M 206 188 C 258 188, 288 238, 358 236 S 428 193, 478 203" stroke="#1B1A17" stroke-width="12" stroke-linecap="round" fill="none" />
+          
+          <!-- Sprocket dots along the film ribbon -->
+          <circle cx="230" cy="189" r="2" fill="#FAF6EE" />
+          <circle cx="260" cy="204" r="2" fill="#FAF6EE" />
+          <circle cx="295" cy="227" r="2" fill="#FAF6EE" />
+          <circle cx="330" cy="237" r="2" fill="#FAF6EE" />
+          <circle cx="365" cy="235" r="2" fill="#FAF6EE" />
+          <circle cx="400" cy="216" r="2" fill="#FAF6EE" />
+          <circle cx="435" cy="198" r="2" fill="#FAF6EE" />
+          <circle cx="470" cy="202" r="2" fill="#FAF6EE" />
+        </g>
 
-          <!-- Card 3: Newsletter -->
-          <div class="split-card split-card-3">
-            <div class="tape-strip tape-corner-right"></div>
-            <div class="card-tag-row">
-              <span class="output-type-stamp">03 // NEWSLETTER</span>
-              <span class="stamp-badge">3 MIN READ</span>
-            </div>
-            <div class="card-sample-snippet">
-              <span class="line-lead">SUBJECT:</span> 6 lakh out of 9 crore. That's 0.67%.
-              <div class="snippet-sub">Why personal finance advice breaks down the moment you get a raise...</div>
-            </div>
-            <div class="card-footer-meta">
-              <span>HIGH OPEN-RATE</span>
-              <span class="meta-check">✓ SUBSTACK / BEEHIIV</span>
-            </div>
-          </div>
+        <!-- 3. HAND-DRAWN EDITORIAL PRESS & SCISSORS (Center Converter) -->
+        <g class="art-converter-press" transform="translate(370, 160)">
+          <!-- Scissors Graphic -->
+          <!-- Handle 1 -->
+          <circle cx="40" cy="22" r="14" stroke="#1B1A17" stroke-width="2.5" fill="#FAF6EE" />
+          <!-- Handle 2 -->
+          <circle cx="40" cy="68" r="14" stroke="#1B1A17" stroke-width="2.5" fill="#FAF6EE" />
+          <!-- Blades meeting at pivot -->
+          <path d="M 49 30 L 98 52" stroke="#1B1A17" stroke-width="3" stroke-linecap="round" />
+          <path d="M 49 60 L 98 38" stroke="#1B1A17" stroke-width="3" stroke-linecap="round" />
+          <!-- Pivot screw -->
+          <circle cx="70" cy="45" r="3.5" fill="#D9381E" stroke="#1B1A17" stroke-width="1.5" />
 
-          <!-- Card 4: Email Letter -->
-          <div class="split-card split-card-4">
-            <div class="card-tag-row">
-              <span class="output-type-stamp">04 // EMAIL LETTER</span>
-              <span class="stamp-badge">1-ON-1 INTIMATE</span>
-            </div>
-            <div class="card-sample-snippet">
-              “'Should I buy that 3-crore flat?' A follower DM'd me that yesterday. Here is what I told him before he signed the EMI...”
-            </div>
-            <div class="card-footer-meta">
-              <span>DIRECT RESPONSE</span>
-              <span class="meta-check">✓ PRIVATE NOTE</span>
-            </div>
-          </div>
-        </div>
-      </div>
+          <!-- Tiny Yellow Highlighter Sparkles -->
+          <path d="M 106 32 L 112 36 L 106 40 L 100 36 Z" fill="#F2D95C" />
+          <path d="M 112 55 L 116 58 L 112 61 L 108 58 Z" fill="#F2D95C" />
+        </g>
+
+        <!-- 4. FOUR SPLITTING STREAMS TO OUTPUT OBJECTS (Right Side) -->
+        <!-- Splitting Guide Curves -->
+        <path d="M 480 205 Q 520 130 550 110" stroke="#1B1A17" stroke-width="2" stroke-dasharray="3 3" opacity="0.6" />
+        <path d="M 480 205 Q 530 190 560 195" stroke="#1B1A17" stroke-width="2" stroke-dasharray="3 3" opacity="0.6" />
+        <path d="M 480 205 Q 520 270 550 300" stroke="#1B1A17" stroke-width="2" stroke-dasharray="3 3" opacity="0.6" />
+        <path d="M 480 205 Q 520 350 560 380" stroke="#1B1A17" stroke-width="2" stroke-dasharray="3 3" opacity="0.6" />
+
+        <!-- OUTPUT 1: X THREAD CARD (Speech Bubble Card with 1/) -->
+        <g class="art-piece art-piece-x" transform="translate(545, 50)">
+          <!-- Washi tape at angle -->
+          <rect x="50" y="-8" width="45" height="15" fill="#EEE6CE" stroke="#C3B796" stroke-width="1" transform="rotate(-3 50 -8)" />
+          
+          <!-- Riso Red layer -->
+          <rect x="3" y="3" width="150" height="96" rx="6" fill="#D9381E" fill-opacity="0.15" />
+          <!-- Main Card -->
+          <rect x="0" y="0" width="150" height="96" rx="6" fill="#FAF6EE" stroke="#1B1A17" stroke-width="2.4" filter="url(#paper-drop)" />
+          
+          <!-- Speech pointer -->
+          <path d="M 22 96 L 15 110 L 32 96 Z" fill="#FAF6EE" stroke="#1B1A17" stroke-width="2.4" stroke-linejoin="round" />
+          
+          <!-- Card Content: 1/ Thread hook -->
+          <circle cx="24" cy="26" r="10" fill="#1B1A17" />
+          <text x="24" y="30" font-family="'Courier Prime', monospace" font-size="11" font-weight="700" fill="#FAF6EE" text-anchor="middle">1/</text>
+          
+          <!-- Text lines -->
+          <rect x="42" y="22" width="70" height="7" rx="2" fill="#1B1A17" />
+          <!-- Highlighted sentence -->
+          <rect x="20" y="46" width="112" height="9" rx="2" fill="#F2D95C" />
+          <rect x="20" y="62" width="95" height="6" rx="2" fill="#757064" />
+          <rect x="20" y="74" width="65" height="6" rx="2" fill="#A8A294" />
+
+          <!-- Tiny Label -->
+          <text x="140" y="18" font-family="'Courier Prime', monospace" font-size="8" font-weight="700" fill="#D9381E" text-anchor="end">X THREAD</text>
+        </g>
+
+        <!-- OUTPUT 2: LINKEDIN POST CARD (Framed Post) -->
+        <g class="art-piece art-piece-li" transform="translate(680, 140)">
+          <!-- Riso Red shadow -->
+          <rect x="-2" y="4" width="155" height="110" rx="4" fill="#D9381E" fill-opacity="0.2" transform="rotate(2)" />
+          <!-- Main Card -->
+          <rect x="0" y="0" width="155" height="110" rx="4" fill="#FFFFFF" stroke="#1B1A17" stroke-width="2.4" filter="url(#paper-drop)" />
+          
+          <!-- Author row -->
+          <circle cx="22" cy="22" r="9" fill="#0A66C2" />
+          <text x="22" y="26" font-family="'Courier Prime', monospace" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">in</text>
+          <rect x="38" y="16" width="60" height="6" rx="1" fill="#1B1A17" />
+          <rect x="38" y="25" width="40" height="4" rx="1" fill="#757064" />
+
+          <!-- Post body lines -->
+          <rect x="14" y="42" width="128" height="6" rx="1" fill="#1B1A17" />
+          <rect x="14" y="54" width="118" height="6" rx="1" fill="#1B1A17" />
+          <rect x="14" y="66" width="90" height="6" rx="1" fill="#1B1A17" />
+
+          <!-- Reaction row -->
+          <circle cx="22" cy="94" r="5" fill="#0A66C2" />
+          <circle cx="31" cy="94" r="5" fill="#D9381E" />
+          <rect x="42" y="91" width="35" height="5" rx="1" fill="#757064" />
+
+          <!-- Label -->
+          <text x="145" y="16" font-family="'Courier Prime', monospace" font-size="8" font-weight="700" fill="#1B1A17" text-anchor="end">LINKEDIN</text>
+        </g>
+
+        <!-- OUTPUT 3: NEWSLETTER (Folded Handwritten Letter) -->
+        <g class="art-piece art-piece-news" transform="translate(535, 220)">
+          <!-- Riso Misregistration -->
+          <rect x="4" y="4" width="145" height="135" rx="2" fill="#D9381E" fill-opacity="0.16" transform="rotate(-1)" />
+          <!-- Letter Paper -->
+          <rect x="0" y="0" width="145" height="135" rx="2" fill="#FAF6EE" stroke="#1B1A17" stroke-width="2.4" filter="url(#paper-drop)" />
+          
+          <!-- Ruled lines on paper -->
+          <line x1="12" y1="36" x2="133" y2="36" stroke="#1B1A17" stroke-opacity="0.12" stroke-width="1" />
+          <line x1="12" y1="56" x2="133" y2="56" stroke="#1B1A17" stroke-opacity="0.12" stroke-width="1" />
+          <line x1="12" y1="76" x2="133" y2="76" stroke="#1B1A17" stroke-opacity="0.12" stroke-width="1" />
+          <line x1="12" y1="96" x2="133" y2="96" stroke="#1B1A17" stroke-opacity="0.12" stroke-width="1" />
+          <line x1="12" y1="116" x2="133" y2="116" stroke="#1B1A17" stroke-opacity="0.12" stroke-width="1" />
+
+          <!-- Handwritten style wave lines -->
+          <path d="M 16 26 Q 40 23 80 27" stroke="#1B1A17" stroke-width="2" fill="none" stroke-linecap="round" />
+          <path d="M 16 48 Q 50 44 110 50" stroke="#1B1A17" stroke-width="1.8" fill="none" stroke-linecap="round" />
+          <path d="M 16 68 Q 60 72 125 67" stroke="#1B1A17" stroke-width="1.8" fill="none" stroke-linecap="round" />
+          <!-- Yellow highlight on key line -->
+          <rect x="14" y="84" width="90" height="9" fill="#F2D95C" fill-opacity="0.8" rx="2" />
+          <path d="M 16 88 Q 55 85 100 89" stroke="#1B1A17" stroke-width="1.8" fill="none" stroke-linecap="round" />
+          
+          <!-- Folded Corner Effect -->
+          <path d="M 125 0 L 145 20 L 125 20 Z" fill="#EDE3D0" stroke="#1B1A17" stroke-width="2" />
+
+          <!-- Paper clip -->
+          <path d="M 28 -6 L 28 18 Q 28 24 34 24 Q 40 24 40 18 L 40 -2" stroke="#757064" stroke-width="2.2" fill="none" stroke-linecap="round" />
+
+          <!-- Label -->
+          <text x="135" y="126" font-family="'Courier Prime', monospace" font-size="8" font-weight="700" fill="#D9381E" text-anchor="end">NEWSLETTER</text>
+        </g>
+
+        <!-- OUTPUT 4: EMAIL LETTER (Envelope with Small Stamp) -->
+        <g class="art-piece art-piece-email" transform="translate(685, 290)">
+          <!-- Riso offset -->
+          <rect x="-3" y="3" width="145" height="98" rx="4" fill="#D9381E" fill-opacity="0.18" />
+          <!-- Envelope Body -->
+          <rect x="0" y="0" width="145" height="98" rx="4" fill="#FAF6EE" stroke="#1B1A17" stroke-width="2.4" filter="url(#paper-drop)" />
+          
+          <!-- Envelope Flap Lines -->
+          <path d="M 0 0 L 72 52 L 145 0" stroke="#1B1A17" stroke-width="2.2" fill="#FCF9F2" />
+          <line x1="0" y1="98" x2="52" y2="42" stroke="#1B1A17" stroke-width="1.5" stroke-opacity="0.3" />
+          <line x1="145" y1="98" x2="93" y2="42" stroke="#1B1A17" stroke-width="1.5" stroke-opacity="0.3" />
+
+          <!-- Small Postage Stamp (Red Riso with Serrated Edges) -->
+          <rect x="108" y="10" width="26" height="30" fill="#D9381E" stroke="#1B1A17" stroke-width="1.8" stroke-dasharray="3 2" />
+          <circle cx="121" cy="25" r="5" fill="#FAF6EE" />
+
+          <!-- Address / Subject lines -->
+          <rect x="16" y="58" width="65" height="5" rx="1" fill="#1B1A17" />
+          <rect x="16" y="70" width="90" height="5" rx="1" fill="#757064" />
+          <rect x="16" y="81" width="45" height="4" rx="1" fill="#A8A294" />
+
+          <!-- Label -->
+          <text x="135" y="90" font-family="'Courier Prime', monospace" font-size="8" font-weight="700" fill="#1B1A17" text-anchor="end">EMAIL</text>
+        </g>
+
+        <!-- Fountain Pen Resting on Desk -->
+        <g class="art-pen" transform="translate(650, 405) rotate(-15)">
+          <!-- Pen Body -->
+          <rect x="0" y="0" width="120" height="10" rx="3" fill="#1B1A17" />
+          <!-- Golden/Brass Trim -->
+          <rect x="25" y="0" width="4" height="10" fill="#F2D95C" />
+          <!-- Nib -->
+          <polygon points="120,1 138,5 120,9" fill="#EDE3D0" stroke="#1B1A17" stroke-width="1.2" />
+          <!-- Nib slit -->
+          <line x1="120" y1="5" x2="133" y2="5" stroke="#1B1A17" stroke-width="1" />
+        </g>
+      </svg>
     </div>
+
   </div>
 </section>
 
 <style>
   .hero-section {
-    padding-top: var(--sp-5);
-    padding-bottom: var(--sp-6);
-    border-bottom: var(--border-thick);
-    background-color: var(--paper-base);
-  }
-
-  .hero-ledger-bar {
+    min-height: calc(100vh - 72px);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-top: var(--border-thick);
-    border-bottom: var(--border-thick);
-    padding: 8px 12px;
-    margin-bottom: var(--sp-5);
-    background-color: var(--paper-sunken);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    flex-wrap: wrap;
-    gap: var(--sp-2);
-  }
-
-  .ledger-label {
-    font-weight: 700;
-    color: var(--accent-vermilion);
-    margin-right: 6px;
-  }
-
-  .ledger-val {
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-
-  .hero-copy-block {
-    margin-bottom: var(--sp-6);
-  }
-
-  .hero-headline {
-    color: var(--ink-black);
-    margin-bottom: var(--sp-3);
-  }
-
-  .moving-word-wrapper {
+    padding: clamp(2rem, 5vw, 4rem) 0;
     position: relative;
-    display: inline-block;
+    border-bottom: 1px solid var(--ink-rule);
   }
 
-  .moving-text {
-    position: relative;
-    z-index: 2;
-    display: inline-block;
-    animation: wordDrift 4s ease-in-out infinite alternate;
-  }
-
-  @keyframes wordDrift {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-3px); }
-  }
-
-  .moving-ink-underline {
-    position: absolute;
-    bottom: -6px;
-    left: 0;
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.5rem, 5vw, 4rem);
     width: 100%;
-    height: 16px;
-    z-index: 1;
-    overflow: visible;
   }
 
-  .moving-ink-underline path {
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
-    animation: drawUnderline 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+  .hero-copy {
+    max-width: 780px;
   }
 
-  @keyframes drawUnderline {
-    to { stroke-dashoffset: 0; }
+  .hero-title {
+    margin-bottom: 1rem;
+    color: var(--ink-primary);
   }
 
-  .hero-subline {
-    max-width: 680px;
-    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
-    color: var(--ink-secondary);
+  .hero-subhead {
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
     line-height: 1.45;
-    margin-bottom: var(--sp-4);
+    color: var(--ink-secondary);
+    margin-bottom: 2rem;
+    max-width: 650px;
   }
 
   .hero-actions {
     display: flex;
     align-items: center;
-    gap: var(--sp-4);
+    gap: 1.5rem;
     flex-wrap: wrap;
   }
 
-  .arrow-down {
-    display: inline-block;
-    transition: transform 0.2s ease;
-  }
-
-  .hero-btn-cta:hover .arrow-down {
-    transform: translateY(3px);
-  }
-
-  .hero-link-secondary {
-    font-family: var(--font-headline-punch);
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-
-  /* The Split Visualization */
-  .split-workbench {
-    border: var(--border-heavy);
-    background-color: var(--paper-sheet);
+  /* Art Container takes >= 60% visual scale */
+  .hero-art-wrapper {
+    width: 100%;
+    background-color: var(--paper-desk);
+    border: 2px solid var(--ink-primary);
+    border-radius: 8px;
+    padding: clamp(1rem, 3vw, 2rem);
+    box-shadow: 6px 6px 0 var(--ink-primary);
     position: relative;
-  }
-
-  .split-header-tag {
-    background-color: var(--ink-black);
-    color: var(--paper-sheet);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 6px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .split-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--accent-vermilion);
-    display: inline-block;
-  }
-
-  .split-canvas {
-    display: grid;
-    grid-template-columns: 1fr;
-    border-top: var(--border-thick);
-  }
-
-  @media (min-width: 1024px) {
-    .split-canvas {
-      grid-template-columns: 340px 1fr;
-    }
-  }
-
-  /* Left: Transcript Paper Roll */
-  .transcript-paper-roll {
-    background-color: var(--paper-base);
-    border-bottom: var(--border-thick);
-    padding: var(--sp-4);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-
-  @media (min-width: 1024px) {
-    .transcript-paper-roll {
-      border-right: var(--border-thick);
-      border-bottom: none;
-    }
-  }
-
-  .paper-roll-header {
-    border-bottom: 2px dashed var(--ink-black);
-    padding-bottom: 8px;
-    margin-bottom: 12px;
-  }
-
-  .roll-red-stamp {
-    font-family: var(--font-headline-punch);
-    font-size: 0.8rem;
-    color: var(--accent-vermilion);
-    letter-spacing: 1px;
-  }
-
-  .roll-meta {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--ink-muted);
-  }
-
-  .ticker-scroll-window {
-    height: 280px;
     overflow: hidden;
-    position: relative;
   }
 
-  .ticker-content {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    animation: scrollTicker 28s linear infinite;
-  }
-
-  .ticker-scroll-window:hover .ticker-content {
-    animation-play-state: paused;
-  }
-
-  @keyframes scrollTicker {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
-  }
-
-  .ticker-line {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    line-height: 1.4;
-    border-left: 2px solid var(--ink-faint);
-    padding-left: 8px;
-  }
-
-  .ticker-time {
+  .hero-illustration {
+    width: 100%;
+    height: auto;
     display: block;
-    font-size: 0.68rem;
-    color: var(--accent-vermilion);
-    font-weight: 700;
+    max-height: 520px;
   }
 
-  .ticker-text {
-    color: var(--ink-black);
+  /* Animation: ribbon stroke drawing */
+  .ribbon-black-track, .ribbon-red-track {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 0;
+    animation: drawRibbon 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
   }
 
-  .tear-edge-divider {
-    margin-top: auto;
-    padding-top: 12px;
-    border-top: 2px dashed var(--ink-black);
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--ink-muted);
-    text-align: center;
+  
+  .art-piece {
+    opacity: 1;
   }
 
-  /* Right: Split Output Cards */
-  .split-outputs-deck {
-    padding: var(--sp-4);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--sp-4);
-    background-color: var(--paper-sheet);
-  }
-
-  @media (min-width: 640px) {
-    .split-outputs-deck {
-      grid-template-columns: 1fr 1fr;
+  @keyframes drawRibbon {
+    to {
+      stroke-dashoffset: 0;
     }
   }
 
-  .split-card {
-    background-color: var(--paper-base);
-    border: var(--border-thick);
-    padding: 16px;
-    position: relative;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .ribbon-black-track, .ribbon-red-track {
+      animation: none;
+    }
   }
 
-  .split-card:hover {
-    transform: translateY(-4px) rotate(0.5deg);
-    border-color: var(--accent-vermilion);
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 2rem 0;
+    }
+    .hero-actions {
+      gap: 1rem;
+    }
   }
 
-  .split-card-1 { transform: rotate(-0.75deg); }
-  .split-card-2 { transform: rotate(0.85deg); }
-  .split-card-3 { transform: rotate(0.5deg); }
-  .split-card-4 { transform: rotate(-0.5deg); }
-
-  .card-tag-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--ink-black);
-    padding-bottom: 6px;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-
-  .output-type-stamp {
-    font-family: var(--font-headline-punch);
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    color: var(--ink-black);
-  }
-
-  .card-sample-snippet {
-    font-family: var(--font-reading);
-    font-size: 0.95rem;
-    line-height: 1.45;
-    color: var(--ink-black);
-    min-height: 72px;
-    margin-bottom: 12px;
-  }
-
-  .line-lead {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    color: var(--accent-vermilion);
-    font-size: 0.8rem;
-  }
-
-  .snippet-sub {
-    font-size: 0.85rem;
-    color: var(--ink-secondary);
-    margin-top: 4px;
-  }
-
-  .card-footer-meta {
-    display: flex;
-    justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--ink-muted);
-    border-top: 1px dashed var(--ink-faint);
-    padding-top: 6px;
-  }
-
-  .meta-check {
-    color: var(--accent-success);
-    font-weight: 700;
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.85rem;
+      line-height: 1.18;
+    }
+    .hero-subhead {
+      font-size: 1.05rem;
+    }
+    .hero-art-wrapper {
+      padding: 0.75rem;
+    }
   }
 </style>
