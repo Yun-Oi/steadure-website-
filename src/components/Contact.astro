@@ -21,6 +21,17 @@ import { contactData, siteConfig } from '../data/siteData.js';
         <div class="tape-strip" aria-hidden="true"></div>
 
         <form class="video-intake-form" id="videoForm">
+          <!-- Honeypot -->
+          <input 
+            type="text" 
+            name="website" 
+            id="formWebsite" 
+            tabindex="-1" 
+            autocomplete="off" 
+            style="display: none;" 
+            aria-hidden="true" 
+          />
+
           <div class="form-group">
             <label for="visitorName" class="form-label typewriter-label">Your name</label>
             <input 
@@ -40,7 +51,7 @@ import { contactData, siteConfig } from '../data/siteData.js';
               id="visitorEmail" 
               name="email" 
               class="form-input" 
-              placeholder="alex@example.com" 
+              placeholder="contact@steadure.com" 
               required 
             />
           </div>
@@ -48,18 +59,20 @@ import { contactData, siteConfig } from '../data/siteData.js';
           <div class="form-group">
             <label for="videoLink" class="form-label typewriter-label">YouTube video link</label>
             <input 
-              type="url" 
+              type="text" 
               id="videoLink" 
-              name="videoLink" 
+              name="message" 
               class="form-input" 
               placeholder="https://youtube.com/watch?v=..." 
               required 
             />
           </div>
 
-          <button type="submit" class="btn-primary form-submit-btn">
+          <button type="submit" class="btn-primary form-submit-btn" id="contactSubmitBtn">
             {contactData.fields.submit}
           </button>
+
+          <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
         </form>
 
         <div class="contact-direct-row">
@@ -204,6 +217,42 @@ import { contactData, siteConfig } from '../data/siteData.js';
     margin-top: 0.5rem;
   }
 
+  .form-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 2px 2px 0 var(--ink-primary);
+  }
+
+  .form-status {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .form-status:empty {
+    display: none;
+  }
+
+  .form-status-success {
+    display: block;
+    padding: 10px 14px;
+    background-color: var(--paper-bg);
+    border: 1.5px solid var(--ink-primary);
+    border-radius: 4px;
+    color: var(--ink-primary);
+    box-shadow: 2px 2px 0 var(--ink-primary);
+  }
+
+  .form-status-error {
+    display: block;
+    padding: 10px 14px;
+    background-color: rgba(194, 38, 15, 0.08);
+    border: 1.5px solid var(--vermilion);
+    border-radius: 4px;
+    color: var(--vermilion);
+  }
+
   .contact-direct-row {
     display: flex;
     align-items: center;
@@ -278,26 +327,62 @@ import { contactData, siteConfig } from '../data/siteData.js';
 
 <script>
   function initContactForm() {
-    const form = document.getElementById('videoForm') ;
+    const form = document.getElementById('videoForm') as HTMLFormElement | null;
     const copyBtn = document.getElementById('copyEmailBtn');
+    const submitBtn = document.getElementById('contactSubmitBtn') as HTMLButtonElement | null;
+    const statusDiv = document.getElementById('formStatus');
 
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const nameInput = document.getElementById('visitorName') ;
-        const emailInput = document.getElementById('visitorEmail') ;
-        const videoInput = document.getElementById('videoLink') ;
 
-        const name = nameInput ? nameInput.value : '';
-        const email = emailInput ? emailInput.value : '';
-        const video = videoInput ? videoInput.value : '';
+        // Check honeypot
+        const honeypot = form.elements.namedItem('website') as HTMLInputElement | null;
+        if (honeypot && honeypot.value) {
+          form.reset();
+          if (statusDiv) {
+            statusDiv.textContent = 'Thank you! Your submission has been received.';
+            statusDiv.className = 'form-status form-status-success';
+          }
+          return;
+        }
 
-        const subject = encodeURIComponent(`New video from ${name}`);
-        const body = encodeURIComponent(
-          `Hi Steadure team,\n\nName: ${name}\nEmail: ${email}\nVideo link: ${video}\n\nLooking forward to the written pack!`
-        );
+        const formData = new FormData(form);
+        formData.delete('website');
 
-        window.location.href = `mailto:contact@steadure.com?subject=${subject}&body=${body}`;
+        const originalBtnText = submitBtn ? submitBtn.textContent : 'Send';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+        }
+        if (statusDiv) {
+          statusDiv.textContent = '';
+          statusDiv.className = 'form-status';
+        }
+
+        try {
+          await fetch('https://script.google.com/macros/s/AKfycbyGH6HLCWWYmpeKSjBWu19BWYU-irx42pEyik9sz_MYMMOGw7SUegSNygGactpchKiU/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            body: new URLSearchParams(formData as any)
+          });
+
+          form.reset();
+          if (statusDiv) {
+            statusDiv.textContent = 'Thank you! Your submission has been received.';
+            statusDiv.className = 'form-status form-status-success';
+          }
+        } catch (error) {
+          if (statusDiv) {
+            statusDiv.textContent = 'Something went wrong, please email contact@steadure.com';
+            statusDiv.className = 'form-status form-status-error';
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+        }
       });
     }
 

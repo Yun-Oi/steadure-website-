@@ -13,12 +13,13 @@ export const siteConfig = {
     xUrl: 'https://x.com/steadure',
     linkedInUrl: 'https://linkedin.com/company/steadure',
   },
+  email: 'contact@steadure.com',
   creator: {
     name: 'Creator Name',
     handle: '@creatorhandle',
     avatarInitial: 'C',
     headline: 'Founder & Educator · 1.2M followers',
-    email: 'hello@example.com',
+    email: 'contact@steadure.com',
   },
   // Single clear configurable line for any future promise (empty by default)
   customPromise: '',
